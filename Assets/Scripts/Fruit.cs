@@ -145,16 +145,18 @@ public class Fruit : MonoBehaviour
                   
                     if (col < 3)
                     {
-                        col = 1;
                         colTempList.Clear();
+                        col = 1;
                         colTempList.Add(cols[i][j]);
                     }
                     else
-                    {
-             
-                   
-                       //파괴리스트에 삽입하고 rowTempList clear 시키기
-                        
+                    {   
+                         DestroyListInsert(col, colTempList, destroyList);
+                         col = 1;
+                         colTempList.Add(cols[i][j]);
+
+                        //파괴리스트에 삽입하고 colTempList clear 시키기
+
                     }
 
                 }
@@ -169,22 +171,32 @@ public class Fruit : MonoBehaviour
                     rowTag = cols[j][i].tag;
       
                     if (row < 3)
-                    {
-                        row = 1;
+                    {      
                         rowTempList.Clear();
+                        row = 1;
                         rowTempList.Add(cols[j][i]);
                     }
                     else
                     {
+                       
+                        DestroyListInsert(row, rowTempList, destroyList);
+                        row = 1;
+                        rowTempList.Add(cols[j][i]);
+                        
                         //파괴리스트에 삽입하고 rowTempList clear 시키기
                     }
                 }
+
+                //처음부터 끝까지 일치하는 블록일 때를 대비
+                if(row>2)
+                    DestroyListInsert(row, rowTempList, destroyList);
+                else if(col>2)
+                    DestroyListInsert(col, colTempList, destroyList);
             }
 
            Debug.Log("Row: " + row + "Col: " + col);
 
-            //매칭되는 블록이 있으면 파괴블록리스트에 삽입하기
-            DestroyListInsert(row, col, rowTempList, colTempList,destroyList);
+            
         }
 
         //파괴블록리스트에 블록이 있다면 파괴 수행 -> 블록 드롭
@@ -196,11 +208,10 @@ public class Fruit : MonoBehaviour
         //파괴할 블록이 없다면, 매칭 로직 종료
         else
         {
-
             bMatch = false;
             bCanTouch = true;
 
-            //다시 블록 원상태로 되돌리기
+            //플레이어가 조작한 블록이 맞지 않다면 다시 블록 원상태로 되돌리기
             if (playerTurn)
             {
                 bReversed = true;
@@ -215,23 +226,16 @@ public class Fruit : MonoBehaviour
     }
 
     //파괴할 블록 입력 함수
-    void DestroyListInsert(int row, int col, List<GameObject> rowTempList, List<GameObject> colTempList,List<GameObject> destroyList)
+    void DestroyListInsert(int matchedCnt, List<GameObject> matchedTempList, List<GameObject> destroyList)
     {
-        if (row >= 3 || col >= 3)
+
+        if(matchedCnt>2)
         {
-            if (row >= 3)
-            {
-                foreach (var item in rowTempList)
-                    destroyList.Add(item);
-            }
-            if (col >= 3)
-            {
-                foreach (var item in colTempList)
-                    destroyList.Add(item);
-            }
-            rowTempList.Clear();
-            colTempList.Clear();
+            foreach (var item in matchedTempList)
+                destroyList.Add(item);
         }
+        matchedTempList.Clear();
+        
     }
 
     //블록 파괴 함수
