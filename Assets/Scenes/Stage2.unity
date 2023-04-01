@@ -1253,7 +1253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.2901961}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1331,7 +1331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.2901961}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5007,7 +5007,7 @@ MonoBehaviour:
   banana: {fileID: 5191508146140151659, guid: a1beb79d548603c409f00eca68a470a6, type: 3}
   pear: {fileID: 8675123225997353305, guid: be99e8a7941d61c4bb592b6ebadf9d43, type: 3}
   grape: {fileID: 7221700613957437160, guid: 0c9c94c9b48eaa2489e474480aa161c5, type: 3}
-  goalCnt: 15
+  goalCnt: 9
   goalFruit: {fileID: 7221700613957437160, guid: 0c9c94c9b48eaa2489e474480aa161c5, type: 3}
 --- !u!114 &1622623581
 MonoBehaviour:

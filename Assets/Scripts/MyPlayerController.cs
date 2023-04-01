@@ -28,6 +28,9 @@ public class MyPlayerController : MonoBehaviour
     //이동 가능 수 
     public int move = 15;
 
+
+   
+
     void Start()
     {
 

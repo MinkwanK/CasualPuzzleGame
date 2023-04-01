@@ -29,7 +29,11 @@ public class GameManager : MonoBehaviour
     public GameObject winPanel;
     public GameObject menuPanel;
 
-
+    void Awake()
+    {
+        //Screen.SetResolution(1080, 1920, true);
+    }
+    
     void Start()
     {
         if (menuPanel != null)
