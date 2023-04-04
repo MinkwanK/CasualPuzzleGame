@@ -4,12 +4,19 @@ using UnityEngine;
 
 
 
-//사운드 효과를 관리하는 스크립트
+/*
+ 사운드 효과를 관리하는 스크립트 (블록 폭팔음, 블록이동, 공격 소리)
+
+  */
 public class Effect : MonoBehaviour
 {
     public AudioClip MoveSoundClip;
     public AudioClip DestroySoundClip;
+    public AudioClip heartBeatSoundClip;
+    public AudioClip smashSoundClip;
+    public AudioClip smashBambooClip;
     private AudioSource effectSource;
+
 
     public GameObject explosion;
 
@@ -35,6 +42,23 @@ public class Effect : MonoBehaviour
     {
         effectSource.clip = MoveSoundClip;
         effectSource.Play(); 
+    }
+
+    public void heartbeatSound()
+    {
+        effectSource.clip = heartBeatSoundClip;
+        effectSource.Play();
+    }
+
+    public void SmashBambooSound()
+    {
+        effectSource.clip = smashBambooClip;
+        effectSource.Play();
+    }
+
+    public void SmashSoundByEnemy()
+    {
+        effectSource.PlayOneShot(smashSoundClip);
     }
 
     public void Explosion(Vector3 position,  Quaternion rot)

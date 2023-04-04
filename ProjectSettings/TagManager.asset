@@ -12,6 +12,10 @@ TagManager:
   - Generator
   - Chicken
   - MusicPlayer
+  - Sword
+  - Shield
+  - Spear
+  - Mana
   layers:
   - Default
   - TransparentFX
@@ -55,6 +59,6 @@ TagManager:
   - name: Fruit
     uniqueID: 3141833679
     locked: 0
-  - name: Chicken
+  - name: Character
     uniqueID: 4206468859
     locked: 0

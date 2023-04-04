@@ -13,21 +13,30 @@ public class GameManager : MonoBehaviour
 
     MusicPlayer musicPlayer;
 
-    public Text moveTxt;
-    public Text goalTxt;
+    public Text playerHP;
+    public Text monsterHP;
     public Text winTxt;
-    
-    public Button StartBtn;
-    public Button ExitBtn;
+    public Text timerTxt;
+
+    public Image PlayerSmashEffect;
+    public Image EnemySmashEffect;
+
+    public Slider playerHP_Slider_InGame;
+    public Slider enemyHP_Slider_InGame;
+
+    public Button StartBtn_MainMenu;
+    public Button ExitBtn_MainMenu;
     public Button Stage1Btn;
     public Button Stage2Btn;
-    public Button Stage_PreviousBtn;
-    public Button RestartBtn;
-    public Button EndBtn;
-    public Button MenuBtn;
-    public Button WinBtn;
-    public GameObject winPanel;
-    public GameObject menuPanel;
+    public Button PreviousBtn_StageScene;
+    public Button ContinueBtn_InGame;
+    public Button EndBtn_InGame;
+    public Button MenuBtn_InGame;
+    public Button WinBtn_InGame;
+
+
+    public GameObject WinPanel_InGame;
+    public GameObject MenuPanel_InGame;
 
     void Awake()
     {
@@ -36,18 +45,27 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {
-        if (menuPanel != null)
-            menuPanel.SetActive(false);
+        if (MenuPanel_InGame != null)
+            MenuPanel_InGame.SetActive(false);
 
-        if (winPanel != null)
-            winPanel.SetActive(false);
+        if (WinPanel_InGame != null)
+            WinPanel_InGame.SetActive(false);
 
-        
+        if (PlayerSmashEffect != null)
+            PlayerSmashEffect.enabled = false;
 
-      
+        if (EnemySmashEffect != null)
+            EnemySmashEffect.enabled = false;
 
         if (GameObject.Find("MusicPlayer") != null)
-        musicPlayer = GameObject.Find("MusicPlayer").GetComponent<MusicPlayer>();  
+        musicPlayer = GameObject.Find("MusicPlayer").GetComponent<MusicPlayer>();
+
+        if (SceneManager.GetActiveScene().name == "MainScene" || SceneManager.GetActiveScene().name == "StageScene")
+        {
+            musicPlayer.UpdateMusic(MusicPlayer.EnumMusicList.NiaViliage);
+        }
+        else
+            musicPlayer.UpdateMusic(MusicPlayer.EnumMusicList.Liebenheim);
     }
 
     // Update is called once per frame
@@ -56,44 +74,78 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void SetMoveTxt(string move)
+
+    //체력바 관리 함수
+    
+    public void SetPlayerHealthBar(float maxHealth)
     {
-        moveTxt.text = move;
-    }
-    public void SetGoalTxt(string goal)
-    {
-        goalTxt.text = goal;
+        playerHP_Slider_InGame.minValue = 0f;
+        playerHP_Slider_InGame.maxValue = maxHealth;
+        playerHP_Slider_InGame.value = maxHealth;
     }
 
-    public void OnClickStartBtn()
+    public void SetEnemyHealthBar(float maxHealth)
     {
-        musicPlayer.PlayBtnSound();
-        SceneManager.LoadScene("StageScene");
+        enemyHP_Slider_InGame.minValue = 0f;
+        enemyHP_Slider_InGame.maxValue = maxHealth;
+        enemyHP_Slider_InGame.value = maxHealth;
     }
+
+    public void UpdatePlayerHealthBar(float value)
+    {
+        playerHP_Slider_InGame.value = value;
+    }
+
+    public void UpdateEnemyHealthBar(float value)
+    {
+        enemyHP_Slider_InGame.value = value;
+    }
+
     
+    public void UpdateTimerTxt(string str)
+    {
+        timerTxt.text = str;
+    }
+
+
+    public void SetPlayerHP(string txt)
+    {
+        playerHP.text = txt;
+    }
+
+    public void SetMonserHP(string txt)
+    {
+        monsterHP.text = txt;
+    }
+
     public void OnClickExitBtn()
     {
         musicPlayer.PlayBtnSound();
         Application.Quit();
     }
 
-    public void OnClickStage1()
+    public void MoveToStage1Scene()
     {
         musicPlayer.PlayBtnSound();
         SceneManager.LoadScene("Stage1");
     }
-    public void OnClickStage2()
+    public void MoveToStage2Scene()
     {
         musicPlayer.PlayBtnSound();
         SceneManager.LoadScene("Stage2");
     }
 
-    public void OnClickPreviousBtnInStage()
+    public void MoveToMainScene()
     {
         musicPlayer.PlayBtnSound();
         SceneManager.LoadScene("MainScene");
     }
 
+    public void MoveToStageScene()
+    {
+        musicPlayer.PlayBtnSound();
+        SceneManager.LoadScene("StageScene");
+    }
     public void OnContinueBtn()
     {
         musicPlayer.PlayBtnSound();
@@ -102,28 +154,50 @@ public class GameManager : MonoBehaviour
 
     public void ShowMenu()
     {
-        menuPanel.SetActive(true);
+        MenuPanel_InGame.SetActive(true);
     }
 
     public void HideMenu()
     {
-        menuPanel.SetActive(false);
+        MenuPanel_InGame.SetActive(false);
     }
 
     public void showWin()
     {
-        winPanel.SetActive(true);
+        WinPanel_InGame.SetActive(true);
     }
 
     public void hideWIn()
     {
-        winPanel.SetActive(false);
+        WinPanel_InGame.SetActive(false);
     }
 
-    public void LoseTxt()
+    public void SetLoseText()
     {
-        winTxt.text = "You Lose";
+        winTxt.text = "Lose";
     }
 
+
+    public void ShowPlayerSmashEffect()
+    {
+        PlayerSmashEffect.enabled = true;
+        Invoke("HidePlayerSmashEffect", 1.0f);
+    }
+
+    public void HidePlayerSmashEffect()
+    {
+        PlayerSmashEffect.enabled = false;
+    }
+
+    public void ShowEnemySmashEffect()
+    {
+        EnemySmashEffect.enabled = true;
+        Invoke("HideEnemySmashEffect", 1.0f);
+    }
+
+    public void HideEnemySmashEffect()
+    {
+        EnemySmashEffect.enabled = false;
+    }
 
 }

@@ -6,9 +6,9 @@ using UnityEngine;
 public class MyPlayerController : MonoBehaviour
 {
 
-    GameManager gamemanager;
+  
     Camera cam;
-    bool pressedFruit = false;
+    bool pressedBlock = false;
 
     GameObject firstFruit;
     GameObject secondFruit;
@@ -16,14 +16,14 @@ public class MyPlayerController : MonoBehaviour
     const int ToFindRowAndCol = 2;
     const float MaxDistance = 1.2f;
 
-    string firstFruitName;
-    string secondFruitName;
+    string firstObjectName;
+    string secondObjectName;
 
     Vector2 firstTemp;
     Vector2 secondTemp;
 
 
-    Fruit fruit;
+    Blocks blocks;
 
     //이동 가능 수 
     public int move = 15;
@@ -35,11 +35,7 @@ public class MyPlayerController : MonoBehaviour
     {
 
         cam = GetComponent<Camera>();
-        fruit = GetComponent<Fruit>();
-        gamemanager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
-        gamemanager.SetMoveTxt(move.ToString());
-        
+        blocks = GetComponent<Blocks>();
 
     }
 
@@ -63,7 +59,7 @@ public class MyPlayerController : MonoBehaviour
     void GetMouseInput()
     {
         //블록 이동 중, 매칭 중, 드랍 중이 아닐때만 입력이 가능
-        if (Input.GetMouseButtonDown(0) && fruit.CanTouch())
+        if (Input.GetMouseButtonDown(0) && blocks.CanTouch())
         {
             Debug.Log("마우스 입력");
             RaycastHit2D hit = ShootRay(Input.mousePosition);
@@ -97,12 +93,12 @@ public class MyPlayerController : MonoBehaviour
     {
         if (hit.transform != null)
         {
-            if (hit.transform.gameObject.CompareTag("Apple") || hit.transform.gameObject.CompareTag("Banana") || hit.transform.gameObject.CompareTag("Pear") || hit.transform.gameObject.CompareTag("Grape"))
+            if (hit.transform.gameObject.CompareTag("Sword") || hit.transform.gameObject.CompareTag("Shield") || hit.transform.gameObject.CompareTag("Spear") || hit.transform.gameObject.CompareTag("Mana"))
             {
-                Debug.Log("과일을 선택하셨습니다" + hit.transform.gameObject + "pressedFruit " + pressedFruit + "move:  " + move);
+                Debug.Log("블록을 선택하셨습니다" + hit.transform.gameObject + "pressedFruit " + pressedBlock + "move:  " + move);
 
                 //과일끼리 두개가 클릭된 경우
-                if (pressedFruit)
+                if (pressedBlock)
                 {
 
                     ClickFruitTwice(hit);
@@ -111,7 +107,7 @@ public class MyPlayerController : MonoBehaviour
                 //과일 한개를 클릭한 상태
                 else
                 {
-                    pressedFruit = true;
+                    pressedBlock = true;
                     firstFruit = hit.transform.gameObject;
 
                 }
@@ -147,28 +143,18 @@ public class MyPlayerController : MonoBehaviour
 
             secondFruit = hit.transform.gameObject;
 
-            firstFruitName = firstFruit.name;
-            secondFruitName = secondFruit.name;
+            firstObjectName = firstFruit.name;
+            secondObjectName = secondFruit.name;
 
-            //이동 감소, UI 표시
-            move--;
-            gamemanager.SetMoveTxt(move.ToString());
-
-            if(move == 0)
-            {
-                gamemanager.SetMoveTxt(move.ToString());
-                gamemanager.LoseTxt();
-                gamemanager.showWin();
- 
-            }
-            fruit.ListExchangeByPlayer(firstFruitName, secondFruitName);
+            //블록 로직 수행
+            blocks.ListExchangeByPlayer(firstObjectName, secondObjectName);
 
 
 
         }
         
 
-        pressedFruit = false;
+        pressedBlock = false;
     }
 }
    
