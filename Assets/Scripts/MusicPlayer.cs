@@ -12,6 +12,7 @@ public class MusicPlayer : MonoBehaviour
 {
 
     public AudioClip niaMusic;
+    public AudioClip Mokoko;
     public AudioClip LiebenHeim;
     public AudioClip buttonSound;
     public AudioSource musicSource;
@@ -21,7 +22,8 @@ public class MusicPlayer : MonoBehaviour
     public enum EnumMusicList
     {
         NiaViliage = 1,
-        Liebenheim
+        Mokoko,
+        Liebenheim,
     }
 
     EnumMusicList enumMusicList;
@@ -75,6 +77,14 @@ public class MusicPlayer : MonoBehaviour
                     break;
                 enumMusicList = EnumMusicList.NiaViliage;
                 musicSource.clip = niaMusic;
+                musicSource.Play();
+                break;
+
+            case EnumMusicList.Mokoko:
+                if (musicSource.clip == Mokoko)
+                    break;
+                enumMusicList = EnumMusicList.Mokoko;
+                musicSource.clip = Mokoko;
                 musicSource.Play();
                 break;
 

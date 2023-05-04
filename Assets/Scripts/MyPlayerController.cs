@@ -11,7 +11,7 @@ public class MyPlayerController : MonoBehaviour
     bool pressedBlock = false;
 
     GameObject firstFruit;
-    GameObject secondFruit;
+    GameObject secondFruit; 
 
     const int ToFindRowAndCol = 2;
     const float MaxDistance = 1.2f;

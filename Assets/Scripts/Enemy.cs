@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour
 
     public Sprite IdleSprite;
     public Sprite hitSprite;
+    public Sprite dieSprite;
 
     private enumEnemyType enemyType;
 
@@ -80,21 +81,26 @@ public class Enemy : MonoBehaviour
         {
             enemy.hp -= attackDamage;
 
-            if(enemy.hp <=0)
+            if (enemy.hp <= 0)
             {
+                gamemanager.SetMonserHP(enemy.hp.ToString());
+                gamemanager.UpdateEnemyHealthBar(enemy.hp);
                 enemy.hp = 0;
                 gamemanager.showWin();
-
+                this.GetComponent<SpriteRenderer>().sprite = dieSprite;
                 //타이머 중지시키기
                 GameObject.Find("Timer").GetComponent<Timer>().SetGameEnd();
             }
+            else
+            {
 
-            gamemanager.SetMonserHP(enemy.hp.ToString());
-            gamemanager.UpdateEnemyHealthBar(enemy.hp);
+                gamemanager.SetMonserHP(enemy.hp.ToString());
+                gamemanager.UpdateEnemyHealthBar(enemy.hp);
 
-            this.GetComponent<SpriteRenderer>().sprite = hitSprite;
+                this.GetComponent<SpriteRenderer>().sprite = hitSprite;
 
-            Invoke("UpdateSprite", 1.0f);
+                Invoke("UpdateSprite", 1.0f);
+            }
         }
     }
 

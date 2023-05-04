@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public Text monsterHP;
     public Text winTxt;
     public Text timerTxt;
+    public Text PrologueText_PrologueScene;
 
     public Image PlayerSmashEffect;
     public Image EnemySmashEffect;
@@ -64,6 +65,10 @@ public class GameManager : MonoBehaviour
         {
             musicPlayer.UpdateMusic(MusicPlayer.EnumMusicList.NiaViliage);
         }
+        else if(SceneManager.GetActiveScene().name == "PrologueScene")
+        {
+            musicPlayer.UpdateMusic(MusicPlayer.EnumMusicList.Mokoko);
+        }
         else
             musicPlayer.UpdateMusic(MusicPlayer.EnumMusicList.Liebenheim);
     }
@@ -107,6 +112,10 @@ public class GameManager : MonoBehaviour
         timerTxt.text = str;
     }
 
+    public void UpdatePrologueText(string str)
+    {
+        PrologueText_PrologueScene.text = str;
+    }
 
     public void SetPlayerHP(string txt)
     {
@@ -140,6 +149,13 @@ public class GameManager : MonoBehaviour
         musicPlayer.PlayBtnSound();
         SceneManager.LoadScene("MainScene");
     }
+
+    public void MoveToPrologueScene()
+    {
+        musicPlayer.PlayBtnSound();
+        SceneManager.LoadScene("PrologueScene");
+    }
+
 
     public void MoveToStageScene()
     {

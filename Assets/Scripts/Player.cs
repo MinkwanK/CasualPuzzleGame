@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 
     public Sprite IdleSprite;
     public Sprite hitSprite;
+    public Sprite dieSprite;
 
     enum enumPlayerType
     {
@@ -76,19 +77,26 @@ public class Player : MonoBehaviour
         if (player.hp <= 0)
         {
             player.hp = 0;
+
+            gamemanager.SetPlayerHP(player.hp.ToString());
+            gamemanager.UpdatePlayerHealthBar(player.hp);
             gamemanager.SetLoseText();
             gamemanager.showWin();
 
             //타이머 중지시키기
             GameObject.Find("Timer").GetComponent<Timer>().SetGameEnd();
-          
+
+            this.GetComponent<SpriteRenderer>().sprite = dieSprite;
         }
-        gamemanager.SetPlayerHP(player.hp.ToString());
-        gamemanager.UpdatePlayerHealthBar(player.hp);
+        else
+        {
 
-        this.GetComponent<SpriteRenderer>().sprite = hitSprite;
+            gamemanager.SetPlayerHP(player.hp.ToString());
+            gamemanager.UpdatePlayerHealthBar(player.hp);
 
-        Invoke("UpdateSprite", 1.0f);
+            this.GetComponent<SpriteRenderer>().sprite = hitSprite;
+            Invoke("UpdateSprite", 1.0f);
+        }
 
         
     }
