@@ -1090,7 +1090,7 @@ GameObject:
   - component: {fileID: 358548341}
   - component: {fileID: 358548340}
   m_Layer: 5
-  m_Name: WinBtn
+  m_Name: ResultBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1618,7 +1618,7 @@ GameObject:
   - component: {fileID: 552840811}
   - component: {fileID: 552840810}
   m_Layer: 5
-  m_Name: MenuBtn
+  m_Name: PauseBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1691,7 +1691,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1251121890}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ShowMenu
+        m_MethodName: ShowPauseMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1935,7 +1935,7 @@ GameObject:
   - component: {fileID: 594025542}
   - component: {fileID: 594025541}
   m_Layer: 5
-  m_Name: WinPanel
+  m_Name: ResultPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2197,7 +2197,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -163.77, y: 671}
+  m_AnchoredPosition: {x: -163.77, y: 720.9}
   m_SizeDelta: {x: 327.536, y: 84.449}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &650994608
@@ -3091,7 +3091,7 @@ GameObject:
   - component: {fileID: 1002757125}
   - component: {fileID: 1002757124}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: ResultBtn_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3150,7 +3150,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC2B9\uB9AC!"
+  m_Text: "\uD655\uC778"
 --- !u!222 &1002757125
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3251,7 +3251,7 @@ GameObject:
   - component: {fileID: 1095940207}
   - component: {fileID: 1095940206}
   m_Layer: 5
-  m_Name: MenuPanel
+  m_Name: PausePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3517,6 +3517,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1251121891}
   - component: {fileID: 1251121890}
+  - component: {fileID: 1251121893}
+  - component: {fileID: 1251121892}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3538,9 +3540,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHP: {fileID: 650994608}
   monsterHP: {fileID: 1292294909}
-  winTxt: {fileID: 1861599778}
+  ResultText: {fileID: 1861599778}
   timerTxt: {fileID: 1551848408}
-  PrologueText_PrologueScene: {fileID: 0}
+  StroyText: {fileID: 0}
   PlayerSmashEffect: {fileID: 35698166}
   EnemySmashEffect: {fileID: 2063035510}
   playerHP_Slider_InGame: {fileID: 1746901019}
@@ -3552,10 +3554,10 @@ MonoBehaviour:
   PreviousBtn_StageScene: {fileID: 0}
   ContinueBtn_InGame: {fileID: 1882558572}
   EndBtn_InGame: {fileID: 1408774365}
-  MenuBtn_InGame: {fileID: 552840810}
-  WinBtn_InGame: {fileID: 358548340}
-  WinPanel_InGame: {fileID: 594025539}
-  MenuPanel_InGame: {fileID: 1095940204}
+  PauseBtn_InGame: {fileID: 0}
+  ResultBtn_InGame: {fileID: 0}
+  ResultPanel_InGame: {fileID: 594025539}
+  PausePanel_InGame: {fileID: 1095940204}
 --- !u!4 &1251121891
 Transform:
   m_ObjectHideFlags: 0
@@ -3571,6 +3573,118 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1251121892
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251121889}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.2
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1251121893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251121889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03d8e43d3dc92d4888a723f36591e25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  niaMusic: {fileID: 8300000, guid: dc2ff5225aaea554e9e82e5e2f1cd170, type: 3}
+  Mokoko: {fileID: 8300000, guid: 5230428afa3e9a84b93e14263ea1b73d, type: 3}
+  LiebenHeim: {fileID: 8300000, guid: 07a95da27d74e7648bd39f1c4eda3d67, type: 3}
+  buttonSound: {fileID: 8300000, guid: 724131bc8a7f34041bb9f1701f0cb58d, type: 3}
 --- !u!1 &1258851194
 GameObject:
   m_ObjectHideFlags: 0
@@ -3898,7 +4012,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 155, y: 671}
+  m_AnchoredPosition: {x: 155, y: 720}
   m_SizeDelta: {x: 327.536, y: 84.449}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1292294909
@@ -5214,7 +5328,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -6227,7 +6341,7 @@ GameObject:
   - component: {fileID: 1861599779}
   - component: {fileID: 1861599778}
   m_Layer: 5
-  m_Name: WinTxt
+  m_Name: ResultText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

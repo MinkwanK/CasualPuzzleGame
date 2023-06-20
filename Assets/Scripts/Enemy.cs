@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 
 /*
-    ÀüÅõ ¾À¿¡¼­ÀÇ ÀûÀÇ ¸ð½À°ú »óÅÂ º¯È­¸¦ ³ªÅ¸³»´Â ½ºÅ©¸³Æ® 
+    ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ® 
  */
 public class Enemy : MonoBehaviour
 {
@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
         
     }
 
-    //ÀûÀÇ Ã¼·ÂÀ» ±ð´Â ÇÔ¼ö
+    //ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     public void DecreaseEnemyHP(int attackDamage)
     {
         if (!bGameEnd)
@@ -86,9 +86,9 @@ public class Enemy : MonoBehaviour
                 gamemanager.SetMonserHP(enemy.hp.ToString());
                 gamemanager.UpdateEnemyHealthBar(enemy.hp);
                 enemy.hp = 0;
-                gamemanager.showWin();
+                gamemanager.ShowResultPanel();
                 this.GetComponent<SpriteRenderer>().sprite = dieSprite;
-                //Å¸ÀÌ¸Ó ÁßÁö½ÃÅ°±â
+                //Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½
                 GameObject.Find("Timer").GetComponent<Timer>().SetGameEnd();
             }
             else
@@ -110,13 +110,13 @@ public class Enemy : MonoBehaviour
     }
 
 
-    //ÀûÀÇ µ¥¹ÌÁö¸¦ ¹ÝÈ¯ÇÏ´Â ÇÔ¼ö
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
     public int CheckEnemyDamage()
     {
         return enemy.damage;
     }
 
-    //°ÔÀÓ Á¾·á º¯¼ö¸¦ true·Î ¹Ù²ãÁÖ´Â º¯¼ö
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ trueï¿½ï¿½ ï¿½Ù²ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void SetGameEnd()
     {
         bGameEnd = true;

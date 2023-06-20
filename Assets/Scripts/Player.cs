@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 
     GameManager gamemanager;
 
-    //ÇÃ·¹ÀÌ¾îÀÇ »óÅÂº¯È­¸¦ ³ªÅ¸³»ÁÖ±â À§ÇÑ ½ºÇÁ¶óÀÌÆ®
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Âºï¿½È­ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 
     public Sprite IdleSprite;
     public Sprite hitSprite;
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
         
     }
 
-    //ÇÃ·¹ÀÌ¾î°¡ °ø°Ý¹Þ´Â ÇÔ¼ö
+    //ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½Ý¹Þ´ï¿½ ï¿½Ô¼ï¿½
     public void DecreasePlayerHP(int attackDamage)
     {
   
@@ -81,9 +81,9 @@ public class Player : MonoBehaviour
             gamemanager.SetPlayerHP(player.hp.ToString());
             gamemanager.UpdatePlayerHealthBar(player.hp);
             gamemanager.SetLoseText();
-            gamemanager.showWin();
+            gamemanager.ShowResultPanel();
 
-            //Å¸ÀÌ¸Ó ÁßÁö½ÃÅ°±â
+            //Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½
             GameObject.Find("Timer").GetComponent<Timer>().SetGameEnd();
 
             this.GetComponent<SpriteRenderer>().sprite = dieSprite;

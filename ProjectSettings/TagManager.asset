@@ -4,18 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Apple
-  - Banana
-  - Grape
-  - Pear
-  - Fruite
   - Generator
   - Chicken
   - MusicPlayer
-  - Sword
-  - Shield
-  - Spear
-  - Mana
+  - Block
+  - Undefined
+  - Slime
+  - Cat
+  - Devil
+  - Skeleton
   layers:
   - Default
   - TransparentFX

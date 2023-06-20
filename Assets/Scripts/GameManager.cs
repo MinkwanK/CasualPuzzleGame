@@ -5,19 +5,19 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-//������ UI�� �����ϴ� ��ũ��Ʈ�Դϴ�. ��ư ȿ������ ����մϴ�.
+//게임의 UI를 관리하는 스크립트입니다. 
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-
+    
+    //게임의 음악 재생용 뮤직 플레이어
     MusicPlayer musicPlayer;
 
     public Text playerHP;
     public Text monsterHP;
-    public Text winTxt;
+    public Text ResultText;
     public Text timerTxt;
-    public Text PrologueText_PrologueScene;
+    public Text StroyText;
 
     public Image PlayerSmashEffect;
     public Image EnemySmashEffect;
@@ -32,12 +32,12 @@ public class GameManager : MonoBehaviour
     public Button PreviousBtn_StageScene;
     public Button ContinueBtn_InGame;
     public Button EndBtn_InGame;
-    public Button MenuBtn_InGame;
-    public Button WinBtn_InGame;
+    public Button PauseBtn_InGame;
+    public Button ResultBtn_InGame;
 
 
-    public GameObject WinPanel_InGame;
-    public GameObject MenuPanel_InGame;
+    public GameObject ResultPanel_InGame;
+    public GameObject PausePanel_InGame;
 
     void Awake()
     {
@@ -46,20 +46,23 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {
-        if (MenuPanel_InGame != null)
-            MenuPanel_InGame.SetActive(false);
+        //메뉴 패널과 결과 화면 패널은 게임 시작 시, 비활성화 시킨다.
+        if (PausePanel_InGame != null)
+            PausePanel_InGame.SetActive(false);
 
-        if (WinPanel_InGame != null)
-            WinPanel_InGame.SetActive(false);
+        if (ResultPanel_InGame != null)
+            ResultPanel_InGame.SetActive(false);
 
+        //수정 예정.
         if (PlayerSmashEffect != null)
             PlayerSmashEffect.enabled = false;
 
         if (EnemySmashEffect != null)
             EnemySmashEffect.enabled = false;
 
-        if (GameObject.Find("MusicPlayer") != null)
-        musicPlayer = GameObject.Find("MusicPlayer").GetComponent<MusicPlayer>();
+        //각 씬의 이름에 따라 다른 노래를 재생한다.
+
+        musicPlayer = GetComponent<MusicPlayer>();
 
         if (SceneManager.GetActiveScene().name == "MainScene" || SceneManager.GetActiveScene().name == "StageScene")
         {
@@ -80,8 +83,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //ü�¹� ���� �Լ�
-    
+    //체력바 초기화 함수
     public void SetPlayerHealthBar(float maxHealth)
     {
         playerHP_Slider_InGame.minValue = 0f;
@@ -96,6 +98,7 @@ public class GameManager : MonoBehaviour
         enemyHP_Slider_InGame.value = maxHealth;
     }
 
+    //체력바 업데이트 함수
     public void UpdatePlayerHealthBar(float value)
     {
         playerHP_Slider_InGame.value = value;
@@ -106,17 +109,19 @@ public class GameManager : MonoBehaviour
         enemyHP_Slider_InGame.value = value;
     }
 
-    
+    //적의 공격 타이머 업데이트 함수
     public void UpdateTimerTxt(string str)
     {
         timerTxt.text = str;
     }
 
+    //프롤로그 텍스트 업데이트 함수
     public void UpdatePrologueText(string str)
     {
-        PrologueText_PrologueScene.text = str;
+        StroyText.text = str;
     }
 
+    //플레이어, 적 HP Text Update 함수
     public void SetPlayerHP(string txt)
     {
         playerHP.text = txt;
@@ -133,6 +138,7 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    //Scene 이동 함수
     public void MoveToStage1Scene()
     {
         musicPlayer.PlayBtnSound();
@@ -165,32 +171,32 @@ public class GameManager : MonoBehaviour
     public void OnContinueBtn()
     {
         musicPlayer.PlayBtnSound();
-        HideMenu();
+        HidePauseMenu();
     }
 
-    public void ShowMenu()
+    public void ShowPauseMenu()
     {
-        MenuPanel_InGame.SetActive(true);
+        PausePanel_InGame.SetActive(true);
     }
 
-    public void HideMenu()
+    public void HidePauseMenu()
     {
-        MenuPanel_InGame.SetActive(false);
+        PausePanel_InGame.SetActive(false);
     }
 
-    public void showWin()
+    public void ShowResultPanel()
     {
-        WinPanel_InGame.SetActive(true);
+        ResultPanel_InGame.SetActive(true);
     }
 
-    public void hideWIn()
+    public void HideResultPanel()
     {
-        WinPanel_InGame.SetActive(false);
+        ResultPanel_InGame.SetActive(false);
     }
 
     public void SetLoseText()
     {
-        winTxt.text = "Lose";
+        ResultText.text = "패배...";
     }
 
 

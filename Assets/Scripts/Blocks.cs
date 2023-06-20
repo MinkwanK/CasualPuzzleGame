@@ -5,10 +5,9 @@ using UnityEngine;
 
 
 /*
-╨М╥о ╦╝╫╨ф╝╦╕ ╟Э╦╝го╟М ╦ед╙╥наВ,╣Е╤Ь╥наВ╣Нюл ╢Ц╟эюж╢б ╫╨е╘╦Ёф╝
-╦ед╙ аъ, ╣Е╤Ь аъюо╤╖╢б юл╣©╫цеЁ ╪Ж ╬Ь╟т ╦╦╣И╬Н╬ъгя╢ы.
+К╦■К║² К╖╓Л╧╜ Л┼╓М│╛К╕╫М┼╦
 
-гЖюГ ╧╝а╕а║: ╨Т╣Е ╧ЖюЭ©║╪╜ ╨М╥оюл Ё╩╥а©ц ╤╖ ╩Щ╠Б╢б ╫и╟╒гя ╡В╠Х гЖ╩С
+Л┬≤Л═∙ М∙└Л ■...
 */
 
 
@@ -16,11 +15,11 @@ using UnityEngine;
 
 public class Blocks : MonoBehaviour
 {
-    //UI ╟Э╦╝©К ╟тюс ╦е╢оюЗ
+    //UI О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫е╢О©╫О©╫О©╫
     GameManager gamemanager;
     Enemy monster;
 
-    //©╜ ╦╝╫╨ф╝ ╧Х©╜, ╨М╥о ╩Щ╪╨╠Б ╦╝╫╨ф╝
+    //О©╫О©╫ О©╫О©╫О©╫О©╫ф╝ О©╫Х©╜, О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ф╝
     List<GameObject>[] cols;
     List<GameObject> generators;
 
@@ -35,7 +34,7 @@ public class Blocks : MonoBehaviour
     bool bReversed = false;
     bool bGameEnd = false;
 
-    //╨М╥о е╦юоюг ©╜ ╠Фюл,╨М╥о юл╣©╪с╣╣
+    //О©╫О©╫О©╫ е╦О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫,О©╫О©╫О©╫ О©╫л╣О©╫О©╫с╣О©╫
     public int colCnt = 4;
     public float Speed = 0.5f;
     int GameObjectNameCnt = 65;
@@ -62,17 +61,17 @@ public class Blocks : MonoBehaviour
 
     void Start()
     {
-        //юлфЕф╝ ддфВЁмф╝
+        //О©╫О©╫О©╫О©╫ф╝ О©╫О©╫О©╫О©╫О©╫О©╫ф╝
         effect = GetComponent<Effect>();
 
-        //╦С╫╨ем ддфВЁмф╝
+        //О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ф╝
         monster = GameObject.Find("Enemy").GetComponent<Enemy>();
 
-        //UI╟Э╦╝©К ╟тюс ╦е╢оюЗ ддфВЁмф╝
+        //UIО©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫е╢О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ф╝
         gamemanager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
 
-        //╦╝╫╨ф╝ цй╠Бх╜ ╧в цй╠Б╟╙ ╩Пют
+        //О©╫О©╫О©╫О©╫ф╝ О©╫й╠О©╫х╜ О©╫О©╫ О©╫й╠Б╟╙ О©╫О©╫О©╫О©╫
         InitialList();
 
     }
@@ -80,12 +79,12 @@ public class Blocks : MonoBehaviour
 
     void Update()
     {
-        //╨М╥о юл╣©
+        //О©╫О©╫О©╫ О©╫л╣О©╫
         if(isMoving)
         MoveBlockByPlayer();
 
         /*
-        //╦Яг╔ а║╪Ж ц╪е╘
+        //О©╫О©╫г╔ О©╫О©╫О©╫О©╫ ц╪е╘
         if(goalCnt<=0)
         {
             gamemanager.SetGoalTxt("0");
@@ -95,15 +94,15 @@ public class Blocks : MonoBehaviour
         
     }
 
-    //╦╝╫╨ф╝ цй╠Бх╜ гт╪Ж
+    //О©╫О©╫О©╫О©╫ф╝ О©╫й╠О©╫х╜ О©╫т╪О©╫
     void InitialList()
     {
-        //╟╢ц╪ ╩Щ╪╨
+        //О©╫О©╫ц╪ О©╫О©╫О©╫О©╫
         cols = new List<GameObject>[colCnt];
         generators = new List<GameObject>();
         bCanTouch = true;
 
-        //╦╝╫╨ф╝ цй╠Б╟╙ ╩Пют
+        //О©╫О©╫О©╫О©╫ф╝ О©╫й╠Б╟╙ О©╫О©╫О©╫О©╫
         for (int i = 0; i < colCnt; i++)
         {
             cols[i] = new List<GameObject>();
@@ -118,14 +117,14 @@ public class Blocks : MonoBehaviour
 
         }
 
-        Debug.Log("гЮ╟З ©╜ цй╠Бх╜ ©о╥А");
+        //Debug.Log("О©╫О©╫О©╫ О©╫О©╫ О©╫й╠О©╫х╜ О©╫о╥О©╫");
 
     }
 
-    //╨М╥о ╦ед╙ ╥наВ
+    //О©╫О©╫О©╫ О©╫О©╫д╙ О©╫О©╫О©╫О©╫
     void MatchLogic()
     {
-        Debug.Log("╦ед║╥наВ");
+       // Debug.Log("О©╫О©╫д║О©╫О©╫О©╫О©╫");
         List<GameObject> destroyList = new List<GameObject>();
 
         for (int i = 0; i < colCnt; i++)
@@ -168,7 +167,7 @@ public class Blocks : MonoBehaviour
                          col = 1;
                          colTempList.Add(cols[i][j]);
 
-                        //фд╠╚╦╝╫╨ф╝©║ ╩Пютго╟М colTempList clear ╫це╟╠Б
+                        //О©╫д╠О©╫О©╫О©╫О©╫О©╫ф╝О©╫О©╫ О©╫О©╫О©╫О©╫О©╫о╟О©╫ colTempList clear О©╫О©╫е╟О©╫О©╫
 
                     }
 
@@ -196,35 +195,35 @@ public class Blocks : MonoBehaviour
                         row = 1;
                         rowTempList.Add(cols[j][i]);
                         
-                        //фд╠╚╦╝╫╨ф╝©║ ╩Пютго╟М rowTempList clear ╫це╟╠Б
+                        //О©╫д╠О©╫О©╫О©╫О©╫О©╫ф╝О©╫О©╫ О©╫О©╫О©╫О©╫О©╫о╟О©╫ rowTempList clear О©╫О©╫е╟О©╫О©╫
                     }
                 }
 
-                //цЁю╫╨нем Ё║╠НаЖ юод║го╢б ╨М╥оюо ╤╖╦╕ ╢К╨Я
+                //цЁО©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫д║О©╫о╢О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫
                 if(row>2)
                     DestroyListInsert(row, rowTempList, destroyList);
                 else if(col>2)
                     DestroyListInsert(col, colTempList, destroyList);
             }
 
-           Debug.Log("Row: " + row + "Col: " + col);
+         //  Debug.Log("Row: " + row + "Col: " + col);
 
             
         }
 
-        //фд╠╚╨М╥о╦╝╫╨ф╝©║ ╨М╥оюл юж╢ы╦И фд╠╚ ╪ЖгЮ -> ╨М╥о ╣Е╥с
+        //О©╫д╠О©╫О©╫О©╫о╦О©╫О©╫О©╫ф╝О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫ж╢ы╦О©╫ О©╫д╠О©╫ О©╫О©╫О©╫О©╫ -> О©╫О©╫О©╫ О©╫О©╫О©╫
         if (destroyList.Count > 0)
         {   
             DestroyBlock(destroyList);
             
         }
-        //фд╠╚гр ╨М╥оюл ╬Ь╢ы╦И, ╦ед╙ ╥наВ а╬╥А
+        //О©╫д╠О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ы╦О©╫, О©╫О©╫д╙ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
         else
         {
             bMatch = false;
             bCanTouch = true;
 
-            //гц╥╧юл╬Н╟║ а╤юшгя ╨М╥оюл ╦баЖ ╬й╢ы╦И ╢ы╫ц ╨М╥о ©Ь╩Себ╥н ╣г╣╧╦╝╠Б
+            //О©╫ц╥О©╫О©╫л╬Н╟║ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫й╢ы╦О©╫ О©╫ы╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫б╥О©╫ О©╫г╣О©╫О©╫О©╫О©╫О©╫
             if (playerTurn)
             {
                 bReversed = true;
@@ -238,7 +237,7 @@ public class Blocks : MonoBehaviour
       
     }
 
-    //фд╠╚гр ╨М╥о ют╥б гт╪Ж
+    //О©╫д╠О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫т╥О©╫ О©╫т╪О©╫
     void DestroyListInsert(int matchedCnt, List<GameObject> matchedTempList, List<GameObject> destroyList)
     {
 
@@ -251,29 +250,29 @@ public class Blocks : MonoBehaviour
         
     }
 
-    //╨М╥о фд╠╚ гт╪Ж
-    //╨М╥о фд╠╚ гт╪Ж©║╪╜ for╧╝юл 4╟ЁЁ╙ Ё╙©б╢ы. ©юхВ╥а ╦ед╙юл for╧╝юл юШю╨ ╠Бюлгя гЖ╩С
+    //О©╫О©╫О©╫ О©╫д╠О©╫ О©╫т╪О©╫
+    //О©╫О©╫О©╫ О©╫д╠О©╫ О©╫т╪О©╫О©╫О©╫О©╫О©╫ forО©╫О©╫О©╫О©╫ 4О©╫О©╫О©╫О©╫ О©╫О©╫О©╫б╢О©╫. О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫д╙О©╫О©╫ forО©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
     void DestroyBlock(List<GameObject> destroyList)
     {
         
-        //╨М╥о фд╠╚ ╪ЖгЮ
+        //О©╫О©╫О©╫ О©╫д╠О©╫ О©╫О©╫О©╫О©╫
         foreach (var item in destroyList)
         {
            
-            //╨М╥о фд╠╚ юлфЕф╝
+            //О©╫О©╫О©╫ О©╫д╠О©╫ О©╫О©╫О©╫О©╫ф╝
             effect.Explosion(item.transform.position, item.transform.rotation);         
             effect.DestroySound();
             effect.SmashBambooSound();
             gamemanager.ShowPlayerSmashEffect();
            
 
-            //╨М╥о фд╠╚
+            //О©╫О©╫О©╫ О©╫д╠О©╫
             Destroy(item);
 
         }
 
         
-        //cols ©Д╪р а╕╟е
+        //cols О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
         for(int i=0;i<colCnt;i++)
         {
             foreach(var item in destroyList)
@@ -283,13 +282,13 @@ public class Blocks : MonoBehaviour
         monster.DecreaseEnemyHP(destroyList.Count);
 
         destroyList.Clear();
-        //╨М╥ою╩ фд╠╚гя ╣з, ╨М╥о ╩Щ╪╨
+        //О©╫О©╫О©╫О©╫О©╫ О©╫д╠О©╫О©╫О©╫ О©╫О©╫, О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
         StartCoroutine(GenerateBlocks());
 
     }
 
-    //╨М╥ою╩ фд╠╚го╟М ╧ы╥н ╨Сюз╦╝©║ ╨М╥ою╩ ц╓©ЖаЮ╬ъгя╢ы.
-    //╥ё╢Щ ╨М╥о ╩Щ╪╨ ╪╪фц гт╪Ж
+    //О©╫О©╫О©╫О©╫О©╫ О©╫д╠О©╫О©╫о╟О©╫ О©╫ы╥О©╫ О©╫О©╫О©╫з╦О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ ц╓О©╫О©╫О©╫О©╫О©╫О©╫я╢О©╫.
+    //О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫т╪О©╫
     IEnumerator GenerateBlocks()
     {
         for(int i=0;i<colCnt;i++)
@@ -302,13 +301,13 @@ public class Blocks : MonoBehaviour
                 for (int j = 0; j < GenerateBlockCnt; j++)
                 {
                     StartCoroutine(InstantiateBlocks(i));
-                    yield return new WaitForSeconds(0.1f); // 0.1цй ╢К╠Б
+                    yield return new WaitForSeconds(0.1f); // 0.1О©╫О©╫ О©╫О©╫О©╫
                  
                 }
             }
         }
 
-        //╣Е╤Ь ╥наВюл ©о╥А╣фю╦╧г╥н, ╣Е╤Ь╣х ╨М╥о©║ ╢Кгя ╦ед╙ю╩ гь╬ъгя╢ы. ╣Ш╤С╪╜, bMatch true юЭх╞
+        //О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫о╥О©╫О©╫О©╫О©╫О©╫г╥О©╫, О©╫О©╫О©╫О©╫О©╫ О©╫О©╫о©О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫д╙О©╫О©╫ О©╫ь╬О©╫О©╫я╢О©╫. О©╫О©╫О©╫О©╫, bMatch true О©╫О©╫х╞
    
         bMatch = true;
         playerTurn = false;
@@ -318,7 +317,7 @@ public class Blocks : MonoBehaviour
 
     }
 
-    //╨М╥оюл фд╠╚╣х хд, ╥ё╢Щ ╨М╥о ╩Щ╪╨ гт╪Ж
+    //О©╫О©╫О©╫О©╫О©╫ О©╫д╠О©╫О©╫О©╫ О©╫О©╫, О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫т╪О©╫
     IEnumerator InstantiateBlocks(int i)
     {
 
@@ -363,11 +362,11 @@ public class Blocks : MonoBehaviour
     }
 
 
-    //╨М╥о а╓╥д гт╪Ж
+    //О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫т╪О©╫
     void SortBlock()
     {
 
-        //╨М╥о╟ёюг юл╣©юл ©о╥А╣х хд, ╩Себ╦╕ ©Ь╩Себ╥н ╨╧╠м╫це╡╢ы.
+        //О©╫О©╫о╟О©╫О©╫О©╫ О©╫л╣О©╫О©╫О©╫ О©╫о╥О©╫О©╫ О©╫О©╫, О©╫О©╫О©╫б╦О©╫ О©╫О©╫О©╫О©╫О©╫б╥О©╫ О©╫О©╫О©╫м╫О©╫е╡О©╫О©╫.
         if (playerTurn)
         {
             for (int i = 0; i < colCnt; i++)
@@ -380,10 +379,10 @@ public class Blocks : MonoBehaviour
             }
         }
 
-        //а╓╥д ╫цюш
+        //О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
         for (int i = 0; i < colCnt; i++)
         {
-            //╤В╢ы╫дю╩ юл©Кгя ©ю╦╖бВ╪Ь а╓╥д
+            //О©╫О©╫О©╫ы╫О©╫О©╫О©╫ О©╫л©О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
             cols[i].Sort((a, b) => -a.transform.position.y.CompareTo(b.transform.position.y));
 
             //foreach (var item in cols[i])
@@ -392,11 +391,11 @@ public class Blocks : MonoBehaviour
             //}
         }
 
-        //╩У╥н ╩Щ╪╨╣х ╨М╥оюл Ё╙©б аВхд╟еЁ╙, гц╥╧юл╬Н╟║ ╨М╥ою╩ юл╣©╫цдвю╩ ╤╖╦╦ ╦ед╙╥наВ ╫ггЮ
+        //О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫д╟еЁО©╫, О©╫ц╥О©╫О©╫л╬Н╟║ О©╫О©╫О©╫О©╫О©╫ О©╫л╣О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫д╙О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
         if (bMatch)
            Invoke("MatchLogic", 0.8f);
         bReversed = false;
-        Debug.Log("а╓╥д ©о╥А");
+     //   Debug.Log("О©╫О©╫О©╫О©╫ О©╫о╥О©╫");
 
         
      
@@ -404,14 +403,14 @@ public class Blocks : MonoBehaviour
     }
 
    
-    //гц╥╧юл╬Н╟║ ╪╠ецгя ╨М╥о юл╣©ю╩ го╠Б юЭ, ╦╝╫╨ф╝╟ёюг ©ю╨Йа╖ф╝ ╠Ёх╞
+    //О©╫ц╥О©╫О©╫л╬Н╟║ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫л╣О©╫О©╫О©╫ О©╫о╠О©╫ О©╫О©╫, О©╫О©╫О©╫О©╫ф╝О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ф╝ О©╫О©╫х╞
     public void ListExchangeByPlayer(string firstFruit, string secondFruit)
     {
             
-        //гЖюГ ╨М╥оюг юл╣©юл юл╥Г╬Н аЖаЖ ╬й╟М юж╢ы╦И
+        //О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫л╣О©╫О©╫О©╫ О©╫л╥О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫й╟О©╫ О©╫ж╢ы╦О©╫
         if (!isMoving)
         {
-            //bReversedюг ╟Ф©Л©║╢б ╨М╥оюл ©Ь╩Себ╥н ╨╧╠м╣г╬Н╬ъ го╢б ╟Ф©Л
+            //bReversedО©╫О©╫ О©╫О©╫Л©║О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫б╥О©╫ О©╫О©╫О©╫м╣г╬О©╫О©╫ О©╫о╢О©╫ О©╫О©╫О©╫
             if (!bReversed)
                 playerTurn = true;
             else
@@ -422,17 +421,17 @@ public class Blocks : MonoBehaviour
 
   
 
-            //юл╣©╫це╟╢б ╨М╥оюг гЮ╟З ©╜ цё╠Б
+            //О©╫л╣О©╫О©╫О©╫е╟О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫ цёО©╫О©╫
             long firstRow = -(int)(Mathf.Round(firstBlockObj.transform.localPosition.y - ToFindRowAndCol) );
             long firstCol = (int)(Mathf.Round(firstBlockObj.transform.localPosition.x + ToFindRowAndCol));
 
             long secondRow = -(int)(Mathf.Round(secondBlockObj.transform.localPosition.y - ToFindRowAndCol));
             long secondCol = (int)(Mathf.Round(secondBlockObj.transform.localPosition.x + ToFindRowAndCol));
       
-            Debug.Log("firstrow: " + firstRow + " secondrow: " + secondRow + "firstcol : " + firstCol + " secondcol: " + secondCol);
-            //╦╝╫╨ф╝╟ёюг ©ю╨Йа╖ф╝ ╠Ёх╞
+            //Debug.Log("firstrow: " + firstRow + " secondrow: " + secondRow + "firstcol : " + firstCol + " secondcol: " + secondCol);
+            //О©╫О©╫О©╫О©╫ф╝О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ф╝ О©╫О©╫х╞
 
-            //©╜юл ╢ы╦╕╤╖
+            //О©╫О©╫О©╫О©╫ О©╫ы╦О©╫О©╫О©╫
             if (firstRow == secondRow)
             {
                
@@ -445,24 +444,24 @@ public class Blocks : MonoBehaviour
 
             }
 
-            //╟╟ю╨ ©╜©║ южю╩ ╤╖╢б ╦╝╫╨ф╝╟ёюг ╠Ёх╞ю╩ гр гй©Д╟║ ╬Ь╢ы. юл╣© хд, а╓╥д╟За╓©║╪╜ юз╣©ю╦╥н ╪ЖгЮ╣х╢ы.
+            //О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ф╝О©╫О©╫О©╫О©╫ О©╫О©╫х╞О©╫О©╫ О©╫О©╫ О©╫й©Д╟║ О©╫О©╫О©╫О©╫. О©╫л╣О©╫ О©╫О©╫, О©╫О©╫О©╫д╟О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫з╣О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫х╢О©╫.
           
 
-            Debug.Log("гц╥╧юл╬Нюг ╪╠ец©║ юггя ╨М╥о ╦╝╫╨ф╝ ╠Ёх╞ ©о╥А");
+       //     Debug.Log("О©╫ц╥О©╫О©╫л╬О©╫О©╫О©╫ О©╫О©╫О©╫ц©О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ф╝ О©╫О©╫х╞ О©╫о╥О©╫");
 
                 
-            //╦╝╫╨ф╝ ╟╩╫е хд, юл╣© аь╨Я
+            //О©╫О©╫О©╫О©╫ф╝ О©╫О©╫О©╫О©╫ О©╫О©╫, О©╫л╣О©╫ О©╫ь╨О©╫
             MoveBlockSetting();
               
         }
 
 }
 
-    //гц╥╧юл╬Н╟║ ╪╠ецгя ╨М╥ою╩ ╢Кют ╧в юЗюЕго╢б Setting гт╪Ж
+    //О©╫ц╥О©╫О©╫л╬Н╟║ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫о╢О©╫ Setting О©╫т╪О©╫
     public void MoveBlockSetting()
     {
        
-        //╨М╥о╟ёюг юл╣©ю╩ гр ╤╖╢б ╦П╣Г ╨М╥о╣Июг ╥╧юл╬Н╦╕ 6, аъ╥б╟╙ю╩ 0ю╦╥н ╧ы╡ш╢ы.
+        //О©╫О©╫о╟О©╫О©╫О©╫ О©╫л╣О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫о╣О©╫О©╫О©╫ О©╫О©╫О©╫л╬Н╦╕ 6, О©╫ъ╥б╟О©╫О©╫О©╫ 0О©╫О©╫О©╫О©╫ О©╫ы╡ш╢О©╫.
         for (int i = 0; i < colCnt; i++)
         {
             for(int j=0;j<colCnt;j++)
@@ -472,10 +471,10 @@ public class Blocks : MonoBehaviour
             }
         }
 
-        //юл╣© ╫цюш, емд║ ╨Ях╟╪╨х╜,╦ед║х╟╪╨х╜
+        //О©╫л╣О©╫ О©╫О©╫О©╫О©╫, О©╫О©╫д║ О©╫О©╫х╟О©╫О©╫х╜,О©╫О©╫д║х╟О©╫О©╫х╜
         
         
-        //гц╥╧юл╬Н╟║ а╤юшгя аВхд
+        //О©╫ц╥О©╫О©╫л╬Н╟║ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
         if (playerTurn)
         {
             firstBlcokObjTargetVec = secondBlockObj.transform.position;
@@ -483,7 +482,7 @@ public class Blocks : MonoBehaviour
             bMatch = true;
             bCanTouch = false;
         }
-        //гц╥╧юл╬Н╟║ а╤юшгя ╨М╥оюл ф╡╥хю╩ ╤╖
+        //О©╫ц╥О©╫О©╫л╬Н╟║ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ ф╡О©╫О©╫О©╫О©╫ О©╫О©╫
         else
         {
             Vector3 temp = firstBlcokObjTargetVec;
@@ -496,23 +495,23 @@ public class Blocks : MonoBehaviour
         isMoving = true;
 
         effect.MoveSound();
-        Debug.Log("юл╣© аь╨Я ©о╥А");
+      //  Debug.Log("О©╫л╣О©╫ О©╫ь╨О©╫ О©╫о╥О©╫");
 
     }
 
-    //гц╥╧юл╬Н╟║ ╪╠ецгя ╨М╥о╣Июг юл╣©
+    //О©╫ц╥О©╫О©╫л╬Н╟║ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫о╣О©╫О©╫О©╫ О©╫л╣О©╫
     public void MoveBlockByPlayer()
     {
 
         if (firstBlockObj.transform.position == firstBlcokObjTargetVec && secondBlockObj.transform.position == secondBlockObjTargetVec)
         {
-            //юл╣© а╬╥А
+            //О©╫л╣О©╫ О©╫О©╫О©╫О©╫
             isMoving = false;
             
-            Debug.Log("гц╥╧юл╬Нюг ╪╠ец©║ юггя ╨М╥о юл╣© ╪ЖгЮ ©о╥А");
+            //Debug.Log("О©╫ц╥О©╫О©╫л╬О©╫О©╫О©╫ О©╫О©╫О©╫ц©О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫л╣О©╫ О©╫О©╫О©╫О©╫ О©╫о╥О©╫");
 
 
-            //юл╣© ©о╥А хд, а╓╥д ╫цюш
+            //О©╫л╣О©╫ О©╫о╥О©╫ О©╫О©╫, О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
              SortBlock();
 
         }
@@ -520,12 +519,12 @@ public class Blocks : MonoBehaviour
         firstBlockObj.transform.position = Vector2.MoveTowards(firstBlockObj.transform.position, firstBlcokObjTargetVec, Speed * Time.deltaTime);
         secondBlockObj.transform.position = Vector2.MoveTowards(secondBlockObj.transform.position, secondBlockObjTargetVec, Speed * Time.deltaTime);
 
-        Debug.Log("юл╣©аъ...");
+     //   Debug.Log("О©╫л╣О©╫О©╫О©╫...");
 
     }
 
-    //а╓╥дю╩ гр╥а╦И ╧л╦╝ юл╣©юл ╣г╬Н юж╬Н╬ъ а╓╥дюл ╟║╢иго╢ы.
-    //╦╝╫╨ф╝ а╓╥д
+    //О©╫О©╫О©╫О©╫О©╫О©╫ О©╫р╥О©╫О©╫О©╫ О©╫л╦О©╫ О©╫л╣О©╫О©╫О©╫ О©╫г╬О©╫ О©╫ж╬О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫о╢О©╫.
+    //О©╫О©╫О©╫О©╫ф╝ О©╫О©╫О©╫О©╫
     
     public bool CanTouch()
     {

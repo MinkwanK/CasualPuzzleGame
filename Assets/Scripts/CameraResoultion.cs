@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//À¯Æ©ºê¸¦ º¸°í Âü°íÇÑ ¸ð¹ÙÀÏ ÇØ»óµµ °íÁ¤ ½ºÅ©¸³Æ®
+//ï¿½ï¿½Æ©ï¿½ê¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®
 public class CameraResoultion : MonoBehaviour
 {
     void Start()
     {
         Camera camera = GetComponent<Camera>();
         Rect rect = camera.rect;
-        float scaleheight = ((float)Screen.width / Screen.height) / ((float)9 / 16); // (°¡·Î / ¼¼·Î)
+        float scaleheight = ((float)Screen.width / Screen.height) / ((float)9 / 16); // (ï¿½ï¿½ï¿½ï¿½ / ï¿½ï¿½ï¿½ï¿½)
         float scalewidth = 1f / scaleheight;
         if (scaleheight < 1)
         {

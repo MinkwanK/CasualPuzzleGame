@@ -957,12 +957,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colCnt: 4
   Speed: 2.5
-  apple: {fileID: 3057099151622686730, guid: 6def132c8ec0f3e438740d2eab4f356a, type: 3}
-  banana: {fileID: 5191508146140151659, guid: a1beb79d548603c409f00eca68a470a6, type: 3}
-  pear: {fileID: 8675123225997353305, guid: be99e8a7941d61c4bb592b6ebadf9d43, type: 3}
-  grape: {fileID: 7221700613957437160, guid: 0c9c94c9b48eaa2489e474480aa161c5, type: 3}
-  goalCnt: 10
-  goalFruit: {fileID: 3057099151622686730, guid: 6def132c8ec0f3e438740d2eab4f356a, type: 3}
+  sword: {fileID: 0}
+  shield: {fileID: 0}
+  spear: {fileID: 0}
+  mana: {fileID: 0}
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -977,6 +975,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSoundClip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
   DestroySoundClip: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  heartBeatSoundClip: {fileID: 0}
+  smashSoundClip: {fileID: 0}
+  smashBambooClip: {fileID: 0}
   explosion: {fileID: 494396923359841542, guid: fb3f53e00a7dee142b06a837b7ccc3db, type: 3}
 --- !u!82 &519420036
 AudioSource:
@@ -1922,20 +1923,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1db5649152d8494e988cd6c7018c816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTxt: {fileID: 0}
-  goalTxt: {fileID: 0}
+  playerHP: {fileID: 0}
+  monsterHP: {fileID: 0}
   winTxt: {fileID: 0}
-  StartBtn: {fileID: 0}
-  ExitBtn: {fileID: 0}
+  timerTxt: {fileID: 0}
+  PrologueText_PrologueScene: {fileID: 0}
+  PlayerSmashEffect: {fileID: 0}
+  EnemySmashEffect: {fileID: 0}
+  playerHP_Slider_InGame: {fileID: 0}
+  enemyHP_Slider_InGame: {fileID: 0}
+  StartBtn_MainMenu: {fileID: 0}
+  ExitBtn_MainMenu: {fileID: 0}
   Stage1Btn: {fileID: 0}
   Stage2Btn: {fileID: 0}
-  Stage_PreviousBtn: {fileID: 0}
-  RestartBtn: {fileID: 0}
-  EndBtn: {fileID: 0}
-  MenuBtn: {fileID: 0}
-  WinBtn: {fileID: 0}
-  winPanel: {fileID: 0}
-  menuPanel: {fileID: 0}
+  PreviousBtn_StageScene: {fileID: 0}
+  ContinueBtn_InGame: {fileID: 0}
+  EndBtn_InGame: {fileID: 0}
+  MenuBtn_InGame: {fileID: 0}
+  WinBtn_InGame: {fileID: 0}
+  ResultPanel_InGame: {fileID: 0}
+  MenuPanel_InGame: {fileID: 0}
 --- !u!1 &862014518
 GameObject:
   m_ObjectHideFlags: 0
@@ -4114,20 +4121,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1db5649152d8494e988cd6c7018c816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTxt: {fileID: 1202848330}
-  goalTxt: {fileID: 938771370}
+  playerHP: {fileID: 0}
+  monsterHP: {fileID: 0}
   winTxt: {fileID: 2059778220}
-  StartBtn: {fileID: 0}
-  ExitBtn: {fileID: 0}
+  timerTxt: {fileID: 0}
+  PrologueText_PrologueScene: {fileID: 0}
+  PlayerSmashEffect: {fileID: 0}
+  EnemySmashEffect: {fileID: 0}
+  playerHP_Slider_InGame: {fileID: 0}
+  enemyHP_Slider_InGame: {fileID: 0}
+  StartBtn_MainMenu: {fileID: 0}
+  ExitBtn_MainMenu: {fileID: 0}
   Stage1Btn: {fileID: 0}
   Stage2Btn: {fileID: 0}
-  Stage_PreviousBtn: {fileID: 0}
-  RestartBtn: {fileID: 1554484256}
-  EndBtn: {fileID: 990896534}
-  MenuBtn: {fileID: 644705956}
-  WinBtn: {fileID: 1272080626}
-  winPanel: {fileID: 983924712}
-  menuPanel: {fileID: 1133698644}
+  PreviousBtn_StageScene: {fileID: 0}
+  ContinueBtn_InGame: {fileID: 0}
+  EndBtn_InGame: {fileID: 0}
+  MenuBtn_InGame: {fileID: 0}
+  WinBtn_InGame: {fileID: 0}
+  ResultPanel_InGame: {fileID: 0}
+  MenuPanel_InGame: {fileID: 0}
 --- !u!1 &2125612004
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 
 /*
-°ÔÀÓ ¹è°æÀ½¾Ç ¹× ¹öÆ° È¿°úÀ½À» Àç»ıÇØÁØ´Ù.
+ë…¸ë˜ ì¬ìƒ ìŠ¤í¬ë¦½íŠ¸
 
  */
 public class MusicPlayer : MonoBehaviour
@@ -15,10 +15,10 @@ public class MusicPlayer : MonoBehaviour
     public AudioClip Mokoko;
     public AudioClip LiebenHeim;
     public AudioClip buttonSound;
-    public AudioSource musicSource;
+    AudioSource musicSource;
 
 
-    //À½¾ÇÀÇ Á¾·ù¸¦ ³ªÅ¸³»´Â ¿­°ÅÇü
+    //ì—´ê±°í˜• ë…¸ë˜ ì¬ìƒ ë¦¬ìŠ¤íŠ¸
     public enum EnumMusicList
     {
         NiaViliage = 1,
@@ -31,8 +31,8 @@ public class MusicPlayer : MonoBehaviour
 
     void Awake()
     {
-        // ¿ÀºêÁ§Æ® À¯Áö
-        DontDestroyOnLoad(this.gameObject);
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+        //DontDestroyOnLoad(this.gameObject);
         
         musicSource = GetComponent<AudioSource>();
         enumMusicList = EnumMusicList.NiaViliage;
@@ -43,7 +43,7 @@ public class MusicPlayer : MonoBehaviour
 
     void Start()
     {
-        //¾À¿¡ µû¶ó ´Ù¸¥ À½¾Ç »ç¿ë
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("MusicPlayer");
 
 

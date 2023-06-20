@@ -3,58 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+//ê²Œì„ì˜ ìŠ¤í† ë¦¬ ì§„í–‰ì„ ìœ„í•œ ìŠ¤í† ë¦¬ ìŠ¤í¬ë¦½íŠ¸
 public class StroyInput : MonoBehaviour
 {
 
     int cnt = 0;
-    GameObject[] longSwords;
     GameManager gamemanager;
-    // Start is called before the first frame update
+
     void Start()
     {
-        longSwords = new GameObject[4];
-
-        for (int i=0;i<4;i++)
-        {
-            //longSwords[i] = new GameObject();
-            longSwords[i] = GameObject.Find("Long_Sword" + i);
-            longSwords[i].GetComponent<SpriteRenderer>().enabled = false;
-        }
-
         gamemanager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        //í„°ì¹˜ë¥¼ í†µí•´ ìŠ¤í† ë¦¬ ì§„í–‰
+        if (Input.touchCount > 0)
         {
-            switch (cnt)
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)
             {
-                case 0:
-                    gamemanager.UpdatePrologueText("´õ ÀÌ»ó ÂüÀ» ¼ö ¾ø´ø ¸ó½ºÅÍµéÀº °íºí¸°A¸¦ Ã£¾Æ°¬¾î¿ä!");
-                    cnt++;
-                    break;
-                case 1:
-                    gamemanager.UpdatePrologueText("½£ ¼ÓÀÇ ÈçÇÑ °íºí¸°A´Â »óÃ³ÀÔÀº ¸ó½ºÅÍµéÀÇ ¸ğ½ÀÀ» º¸°í ¸¶À½ÀÌ ¾ÆÆÍ¾î¿ä.");
-                    cnt++;
-                    break;
-                case 2:
-                    gamemanager.UpdatePrologueText("°íºí¸°A´Â ´ÙÁüÇß¾î¿ä. ´Ù½Ã´Â ÇÃ·¹ÀÌ¾îµéÀÌ ¼ÒÁßÇÑ Ä£±¸µéÀ» ±«·ÓÈ÷Áö ¸øÇÏ°Ô ¸¸µé °ÍÀÌ¶ó°í¿ä!");
-                    cnt++;
-                    break;
-                case 3:
-                    gamemanager.UpdatePrologueText("°íºí¸°A¸¦ Áß½ÉÀ¸·Î ¸ó½ºÅÍµéÀÇ ¹İ¶õÀº ½ÃÀÛµÆ½À´Ï´Ù!");
-                    cnt++;
-                    break;
-                case 4:
-                    UpdatePrologueCharactersSprite();
-                    cnt++;
-                    break;
-                case 5:
-                    SceneManager.LoadScene("StageScene");
-                    break;
+                switch (cnt)
+                {
+                    case 0:
+                        gamemanager.UpdatePrologueText("ëª¨í—˜ê°€ë“¤ì˜ ê²½í—˜ì¹˜ë¥¼ ìœ„í•´ ëª¬ìŠ¤í„°ë“¤ì€ ë§¤ì¼ì„ ëˆˆë¬¼ë¡œ ë³´ëƒˆì–´ìš”...");
+                        cnt++;
+                        break;
+                    case 1:
+                        gamemanager.UpdatePrologueText("ê³ ë¸”ë¦°AëŠ” ì¹œêµ¬ë“¤ì„ ìœ„í•´ ë³µìˆ˜ë¥¼ ë‹¤ì§í–ˆì–´ìš”!");
+                        cnt++;
+                        break;
+                    case 2:
+                        gamemanager.UpdatePrologueText("ì˜¤ëŠ˜ë¶€í„° ì¹œêµ¬ë“¤ì€ ëˆ„êµ¬ë„ ê´´ë¡­íˆì§€ ëª»í•´ìš”!");
+                        cnt++;
+                        break;
+                    case 3:
+                        UpdatePrologueCharactersSprite();
+                        cnt++;
+                        break;
+                    case 4:
+                        SceneManager.LoadScene("StageScene");
+                        break;
 
+                }
             }
         }
     }
@@ -62,27 +55,14 @@ public class StroyInput : MonoBehaviour
     public void UpdatePrologueCharactersSprite()
     {
 
-        for (int i = 0; i < 4; i++)
-        {
-            longSwords[i].GetComponent<SpriteRenderer>().enabled = true;
-        }
         Sprite goblinSprite = Resources.Load<Sprite>("Sprite/GoblinA");
         GameObject.Find("Goblin_Flower").GetComponent<SpriteRenderer>().sprite = goblinSprite;
 
         Sprite slimeSprite = Resources.Load<Sprite>("Images/Weapon/Slime_32");
         GameObject.Find("Slime_32_hurt").GetComponent<SpriteRenderer>().sprite = slimeSprite;
 
-        Sprite demonSprite = Resources.Load<Sprite>("Images/Weapon/Devil_32");
-        GameObject.Find("Devil_32_hurt").GetComponent<SpriteRenderer>().sprite = demonSprite;
-
-        Sprite skeletonSprite = Resources.Load<Sprite>("Images/Weapon/Skeleton_32");
-        GameObject.Find("Skeleton_cry").GetComponent<SpriteRenderer>().sprite = skeletonSprite;
-
         Sprite catSprite = Resources.Load<Sprite>("Images/Weapon/Cat32");
         GameObject.Find("Cat_Cry").GetComponent<SpriteRenderer>().sprite = catSprite;
-
-
-
 
     }
 }

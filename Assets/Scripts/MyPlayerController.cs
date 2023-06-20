@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//ÇÃ·¹ÀÌ¾îÀÇ Á¶ÀÛÀ» À§ÇÑ ½ºÅ©¸³Æ®. Main Camera¿¡ ºÎÂøµÇ´Â ½ºÅ©¸³Æ®ÀÌ´Ù.
+//í”Œë ˆì´ì–´ì˜ ì¡°ì‘ì„ ìœ„í•œ ìŠ¤í¬ë¦½íŠ¸. Main Cameraì— ë¶€ì°©ë˜ëŠ” ìŠ¤í¬ë¦½íŠ¸ì´ë‹¤.
 public class MyPlayerController : MonoBehaviour
 {
 
@@ -10,7 +10,7 @@ public class MyPlayerController : MonoBehaviour
     Camera cam;
     bool pressedBlock = false;
 
-    GameObject firstFruit;
+    GameObject firstBlock;
     GameObject secondFruit; 
 
     const int ToFindRowAndCol = 2;
@@ -25,7 +25,7 @@ public class MyPlayerController : MonoBehaviour
 
     Blocks blocks;
 
-    //ÀÌµ¿ °¡´É ¼ö 
+    //ì´ë™ ê°€ëŠ¥ ìˆ˜ 
     public int move = 15;
 
 
@@ -45,31 +45,28 @@ public class MyPlayerController : MonoBehaviour
         getFruiteInput();
     }
 
-    //°úÀÏÀ» ÅÍÄ¡ÇÒ ‹šÀÇ Á¶ÀÛ
+    //ê³¼ì¼ì„ í„°ì¹˜í•  Â‹Âšì˜ ì¡°ì‘
     void getFruiteInput()
     {
 
-       GetMouseInput();
-       // GetMobileInput();
+       //GetMouseInput();
+        GetMobileInput();
 
         
     }
 
-     //¸¶¿ì½º ÀÔ·Â ¹Ş±â
+    //ë§ˆìš°ìŠ¤ ì…ë ¥ ë°›ê¸°
     void GetMouseInput()
     {
-        //ºí·Ï ÀÌµ¿ Áß, ¸ÅÄª Áß, µå¶ø ÁßÀÌ ¾Æ´Ò¶§¸¸ ÀÔ·ÂÀÌ °¡´É
+        //ë¸”ë¡ ì´ë™ ì¤‘, ë§¤ì¹­ ì¤‘, ë“œë ì¤‘ì´ ì•„ë‹ë•Œë§Œ ì…ë ¥ì´ ê°€ëŠ¥
         if (Input.GetMouseButtonDown(0) && blocks.CanTouch())
         {
-            Debug.Log("¸¶¿ì½º ÀÔ·Â");
             RaycastHit2D hit = ShootRay(Input.mousePosition);
-            PressFruit(hit);
-
-          
+            PressBlock(hit);
         }
     }
 
-    //ÅÍÄ¡ ÀÔ·Â ¹Ş±â
+    //í„°ì¹˜ ì…ë ¥ ë°›ê¸°
     void GetMobileInput()
     {
         if (Input.touchCount > 0)
@@ -77,10 +74,28 @@ public class MyPlayerController : MonoBehaviour
             Touch touch = Input.GetTouch(0);
 
             if (touch.phase == TouchPhase.Began && move > 0)
+            {              
+                //ì²« ë¸”ë¡ì€ í„°ì¹˜ë¡œ ì„ íƒ
+                if (!pressedBlock)
+                {
+                    Debug.Log("í„°ì¹˜");
+                    RaycastHit2D hit = ShootRay(touch.position);
+                    PressBlock(hit);
+                }
+            }
+            //ë“œë˜ê·¸
+            else if(touch.phase == TouchPhase.Moved && move > 0 )
             {
+                if (pressedBlock)
+                {
+                    Debug.Log("ë“œë˜ê·¸");
+                    RaycastHit2D hit = ShootRay(touch.position);
 
-                RaycastHit2D hit = ShootRay(touch.position);
-                PressFruit(hit);
+                    if(hit.transform.gameObject != firstBlock)
+                    {
+                        PressBlock(hit);
+                    }
+                }
             }
 
         }
@@ -88,27 +103,25 @@ public class MyPlayerController : MonoBehaviour
                
     }
 
-    //°úÀÏ ¼±ÅÃ ÇÔ¼ö
-    void PressFruit(RaycastHit2D hit)
+    //ê³¼ì¼ ì„ íƒ í•¨ìˆ˜
+    void PressBlock(RaycastHit2D hit)
     {
         if (hit.transform != null)
         {
-            if (hit.transform.gameObject.CompareTag("Sword") || hit.transform.gameObject.CompareTag("Shield") || hit.transform.gameObject.CompareTag("Spear") || hit.transform.gameObject.CompareTag("Mana"))
+            if (hit.transform.gameObject.CompareTag("Cat") || hit.transform.gameObject.CompareTag("Slime") || hit.transform.gameObject.CompareTag("Skeleton") || hit.transform.gameObject.CompareTag("Devil"))
             {
-                Debug.Log("ºí·ÏÀ» ¼±ÅÃÇÏ¼Ì½À´Ï´Ù" + hit.transform.gameObject + "pressedFruit " + pressedBlock + "move:  " + move);
+                Debug.Log("ë¸”ë¡ì„ ì„ íƒí•˜ì…¨ìŠµë‹ˆë‹¤" + hit.transform.gameObject + "pressedFruit " + pressedBlock + "move:  " + move);
 
-                //°úÀÏ³¢¸® µÎ°³°¡ Å¬¸¯µÈ °æ¿ì
+                //ì§€ê¸ˆê¹Œì§€ ë‘ê°œì˜ ë¸”ë¡ì´ ì„ íƒëœ ê²½ìš°
                 if (pressedBlock)
                 {
-
-                    ClickFruitTwice(hit);
-
+                    ClickBlockTwice(hit);
                 }
-                //°úÀÏ ÇÑ°³¸¦ Å¬¸¯ÇÑ »óÅÂ
+                //ì§€ê¸ˆê¹Œì§€ í•˜ë‚˜ì˜ ë¸”ë¡ì„ ì„ íƒí•œ ê²½ìš°
                 else
                 {
                     pressedBlock = true;
-                    firstFruit = hit.transform.gameObject;
+                    firstBlock = hit.transform.gameObject;
 
                 }
 
@@ -116,7 +129,7 @@ public class MyPlayerController : MonoBehaviour
 
         }
     }
-    //Ray ¹ß»ç ÇÔ¼ö
+    //Ray ë°œì‚¬ í•¨ìˆ˜
     RaycastHit2D ShootRay(Vector2 touchPos)
     {
         Ray ray = cam.ScreenPointToRay(touchPos);
@@ -127,26 +140,27 @@ public class MyPlayerController : MonoBehaviour
         return hit;
     }
 
-    
-    //¼±ÅÃµÈ °úÀÏ µÎ°³ÀÇ °Å¸®°¡ ±³È¯ °¡´ÉÇÑ °Å¸®ÀÎÁö ÆÇ´ÜÇÏ°í ¸ÅÄª ·ÎÁ÷ ½ÃÀÛ
-    void ClickFruitTwice(RaycastHit2D hit)
+
+    //ì„ íƒëœ ê³¼ì¼ ë‘ê°œì˜ ê±°ë¦¬ê°€ êµí™˜ ê°€ëŠ¥í•œ ê±°ë¦¬ì¸ì§€ íŒë‹¨í•˜ê³  ë§¤ì¹­ ë¡œì§ ì‹œì‘
+
+    void ClickBlockTwice(RaycastHit2D hit)
     {
-        //°Å¸® ¹× ¼­·ÎÀÇ ´ë°¢¼± À§Ä¡ ÆÇ´Ü
+        //ê±°ë¦¬ ë° ì„œë¡œì˜ ëŒ€ê°ì„  ìœ„ì¹˜ íŒë‹¨
 
-        Debug.Log(Vector2.Distance(firstFruit.transform.localPosition, hit.transform.localPosition));
+        Debug.Log(Vector2.Distance(firstBlock.transform.localPosition, hit.transform.localPosition));
 
-        if ((Vector2.Distance(firstFruit.transform.localPosition, hit.transform.localPosition) < MaxDistance))
+        if ((Vector2.Distance(firstBlock.transform.localPosition, hit.transform.localPosition) < MaxDistance))
         {
-            Debug.Log("°úÀÏ µÎ°³ Å¬¸¯ÇÑ »óÅÂ");
+            Debug.Log("ê³¼ì¼ ë‘ê°œ í´ë¦­í•œ ìƒíƒœ");
 
-           
+
 
             secondFruit = hit.transform.gameObject;
 
-            firstObjectName = firstFruit.name;
+            firstObjectName = firstBlock.name;
             secondObjectName = secondFruit.name;
 
-            //ºí·Ï ·ÎÁ÷ ¼öÇà
+            //ë¸”ë¡ ë¡œì§ ìˆ˜í–‰
             blocks.ListExchangeByPlayer(firstObjectName, secondObjectName);
 
 
