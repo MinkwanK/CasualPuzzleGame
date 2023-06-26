@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 
 /*
-    ���� �������� ���� ����� ���� ��ȭ�� ��Ÿ���� ��ũ��Ʈ 
+    플레이어와 교전하는 적 스크립트
  */
 public class Enemy : MonoBehaviour
 {
@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
         manAtArms,
     }
 
-    struct Character
+    public struct Character
     {
         public int hp;
         public int damage;
@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
 
 
     GameManager gamemanager;
-    Character enemy;
+    public Character enemyStatus;
     bool bGameEnd = false;
 
     public Sprite IdleSprite;
@@ -53,49 +53,50 @@ public class Enemy : MonoBehaviour
         {
             enemyType = enumEnemyType.peasant;
 
-            enemy = new Character(50,5,0);
+            enemyStatus = new Character(50,5,0);
    
         }
 
         else if (sceneName == "Stage2")
         {
-            enemy = new Character(40, 8, 0);
+            enemyStatus = new Character(40, 8, 0);
         }
 
-        gamemanager.SetEnemyHealthBar(enemy.hp);
-        gamemanager.SetMonserHP(enemy.hp.ToString());
+        gamemanager.SetEnemyHealthBar(enemyStatus.hp);
+        gamemanager.SetMonserHP(enemyStatus.hp.ToString());
 
 
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         
     }
 
-    //���� ü���� ��� �Լ�
+   //적의 체력차감
     public void DecreaseEnemyHP(int attackDamage)
     {
         if (!bGameEnd)
         {
-            enemy.hp -= attackDamage;
+            enemyStatus.hp -= attackDamage;
 
-            if (enemy.hp <= 0)
+            if (enemyStatus.hp <= 0)
             {
-                gamemanager.SetMonserHP(enemy.hp.ToString());
-                gamemanager.UpdateEnemyHealthBar(enemy.hp);
-                enemy.hp = 0;
+                gamemanager.SetMonserHP(enemyStatus.hp.ToString());
+                enemyStatus.hp = 0;
+                gamemanager.UpdateEnemyHealthBar(enemyStatus.hp);
                 gamemanager.ShowResultPanel();
                 this.GetComponent<SpriteRenderer>().sprite = dieSprite;
-                //Ÿ�̸� ������Ű��
+
+                //체력이 0이면 타이머 종료
                 GameObject.Find("Timer").GetComponent<Timer>().SetGameEnd();
             }
             else
             {
 
-                gamemanager.SetMonserHP(enemy.hp.ToString());
-                gamemanager.UpdateEnemyHealthBar(enemy.hp);
+                gamemanager.SetMonserHP(enemyStatus.hp.ToString());
+                gamemanager.UpdateEnemyHealthBar(enemyStatus.hp);
 
                 this.GetComponent<SpriteRenderer>().sprite = hitSprite;
 
@@ -110,13 +111,13 @@ public class Enemy : MonoBehaviour
     }
 
 
-    //���� �������� ��ȯ�ϴ� �Լ�
+    //적의 데미지 표시
     public int CheckEnemyDamage()
     {
-        return enemy.damage;
+        return enemyStatus.damage;
     }
 
-    //���� ���� ������ true�� �ٲ��ִ� ����
+    //적의 체력이 0이면 게임 종료
     public void SetGameEnd()
     {
         bGameEnd = true;

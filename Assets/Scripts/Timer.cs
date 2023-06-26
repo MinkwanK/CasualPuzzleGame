@@ -5,7 +5,7 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     /*
-     Enemy�� ������ �ð����� ������ �� �ֵ��� ��
+    적의 공격을 위한 타이머 스크립트
      
      */
 
@@ -48,6 +48,7 @@ public class Timer : MonoBehaviour
                 gamemanager.ShowEnemySmashEffect();
             }
         }
+        //플레이어의 체력이 0이 된다 -> 타이머 종료 -> 적 공격 종료
         else
         {
             enemy.SetGameEnd();

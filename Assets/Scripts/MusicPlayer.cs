@@ -31,9 +31,7 @@ public class MusicPlayer : MonoBehaviour
 
     void Awake()
     {
-        // ������Ʈ ����
-        //DontDestroyOnLoad(this.gameObject);
-        
+   
         musicSource = GetComponent<AudioSource>();
         enumMusicList = EnumMusicList.NiaViliage;
         musicSource.clip = niaMusic;
@@ -43,16 +41,8 @@ public class MusicPlayer : MonoBehaviour
 
     void Start()
     {
-        //���� ���� �ٸ� ���� ���
-        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("MusicPlayer");
+        musicSource.Play();
 
-
-        if (gameObjects.Length > 1)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-            musicSource.Play();
 
     }
 
@@ -68,6 +58,7 @@ public class MusicPlayer : MonoBehaviour
         musicSource.PlayOneShot(buttonSound);
     }
 
+    //씬 제목에 따라 노래 교체
     public void UpdateMusic(EnumMusicList musicList)
     {
         switch(musicList)

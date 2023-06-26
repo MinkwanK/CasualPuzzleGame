@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4409483602469953347}
   - component: {fileID: 4409483602469953349}
   m_Layer: 0
-  m_Name: Monster
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: -88498437
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4001b191d216bdb42b11c305f535b368, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8e0e89b26f5beef43a8519e4c6eb53c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,3 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d48a15a7a2ba245a4304e5a766351a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IdleSprite: {fileID: 21300000, guid: 8e0e89b26f5beef43a8519e4c6eb53c5, type: 3}
+  hitSprite: {fileID: 21300000, guid: 6f319b09a753ca34b97055b8c26e9f10, type: 3}
+  dieSprite: {fileID: 21300000, guid: b8300f6565547834ebdc26635a3e4033, type: 3}

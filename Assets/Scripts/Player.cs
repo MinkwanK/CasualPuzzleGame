@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    //적과 교전하는 플레이어 스크립트
 
     GameManager gamemanager;
-
-    //�÷��̾��� ���º�ȭ�� ��Ÿ���ֱ� ���� ��������Ʈ
+    Timer timer;
 
     public Sprite IdleSprite;
     public Sprite hitSprite;
@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
     {
 
         gamemanager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        timer = GameObject.Find("Timer").GetComponent<Timer>();
         string sceneName = SceneManager.GetActiveScene().name;
 
 
@@ -68,7 +69,7 @@ public class Player : MonoBehaviour
         
     }
 
-    //�÷��̾ ���ݹ޴� �Լ�
+    //플레이어 체력 차감
     public void DecreasePlayerHP(int attackDamage)
     {
   
@@ -83,8 +84,8 @@ public class Player : MonoBehaviour
             gamemanager.SetLoseText();
             gamemanager.ShowResultPanel();
 
-            //Ÿ�̸� ������Ű��
-            GameObject.Find("Timer").GetComponent<Timer>().SetGameEnd();
+            //플레이어의 체력이 0이 되면 게임 종료
+            timer.SetGameEnd();
 
             this.GetComponent<SpriteRenderer>().sprite = dieSprite;
         }

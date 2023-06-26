@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8675123225997353284}
   - component: {fileID: 8675123225997353287}
-  - component: {fileID: 7530304300512919274}
   - component: {fileID: -7158604002508249400}
+  - component: {fileID: -6404711463168066285}
+  - component: {fileID: 756889909962192796}
   m_Layer: 0
   m_Name: Devil_Block
   m_TagString: Devil
@@ -86,27 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &7530304300512919274
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8675123225997353305}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 5
 --- !u!61 &-7158604002508249400
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -133,3 +113,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8641484, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-6404711463168066285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8675123225997353305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9540f6ce7fbb12041a9574b1b6081f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ColPos: 1
+  _RowPos: 1
+--- !u!50 &756889909962192796
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8675123225997353305}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 5

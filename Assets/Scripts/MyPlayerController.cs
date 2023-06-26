@@ -6,30 +6,19 @@ using UnityEngine;
 public class MyPlayerController : MonoBehaviour
 {
 
-  
+
     Camera cam;
     bool pressedBlock = false;
 
-    GameObject firstBlock;
-    GameObject secondFruit; 
+    GameObject _firstBlock;
+    GameObject _secondBlock;
 
-    const int ToFindRowAndCol = 2;
-    const float MaxDistance = 1.2f;
-
-    string firstObjectName;
-    string secondObjectName;
-
-    Vector2 firstTemp;
-    Vector2 secondTemp;
-
+    BlockInfo _firstBlockInfo;
+    BlockInfo _secondBlockInfo;
 
     Blocks blocks;
 
-    //이동 가능 수 
-    public int move = 15;
 
-
-   
 
     void Start()
     {
@@ -38,7 +27,6 @@ public class MyPlayerController : MonoBehaviour
         blocks = GetComponent<Blocks>();
 
     }
-
 
     void Update()
     {
@@ -49,21 +37,21 @@ public class MyPlayerController : MonoBehaviour
     void getFruiteInput()
     {
 
-       //GetMouseInput();
-        GetMobileInput();
+      //GetMouseInput();
+       GetMobileInput();
 
-        
     }
 
-    //마우스 입력 받기
+    //마우스 입력 받기 (디버기용)
     void GetMouseInput()
     {
         //블록 이동 중, 매칭 중, 드랍 중이 아닐때만 입력이 가능
-        if (Input.GetMouseButtonDown(0) && blocks.CanTouch())
+        if (Input.GetMouseButtonDown(0))
         {
             RaycastHit2D hit = ShootRay(Input.mousePosition);
             PressBlock(hit);
         }
+
     }
 
     //터치 입력 받기
@@ -73,8 +61,8 @@ public class MyPlayerController : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);
 
-            if (touch.phase == TouchPhase.Began && move > 0)
-            {              
+            if (touch.phase == TouchPhase.Began)
+            {
                 //첫 블록은 터치로 선택
                 if (!pressedBlock)
                 {
@@ -84,14 +72,14 @@ public class MyPlayerController : MonoBehaviour
                 }
             }
             //드래그
-            else if(touch.phase == TouchPhase.Moved && move > 0 )
+            else if (touch.phase == TouchPhase.Moved)
             {
                 if (pressedBlock)
                 {
                     Debug.Log("드래그");
                     RaycastHit2D hit = ShootRay(touch.position);
 
-                    if(hit.transform.gameObject != firstBlock)
+                    if (hit.transform.gameObject != _firstBlock)
                     {
                         PressBlock(hit);
                     }
@@ -100,7 +88,7 @@ public class MyPlayerController : MonoBehaviour
 
         }
 
-               
+
     }
 
     //과일 선택 함수
@@ -110,18 +98,22 @@ public class MyPlayerController : MonoBehaviour
         {
             if (hit.transform.gameObject.CompareTag("Cat") || hit.transform.gameObject.CompareTag("Slime") || hit.transform.gameObject.CompareTag("Skeleton") || hit.transform.gameObject.CompareTag("Devil"))
             {
-                Debug.Log("블록을 선택하셨습니다" + hit.transform.gameObject + "pressedFruit " + pressedBlock + "move:  " + move);
+                Debug.Log("블록을 선택하셨습니다" + hit.transform.gameObject + "pressedFruit " + pressedBlock );
 
                 //지금까지 두개의 블록이 선택된 경우
                 if (pressedBlock)
                 {
+                    _secondBlock = hit.transform.gameObject;
+                    FindLocationInLinkedList();
                     ClickBlockTwice(hit);
                 }
                 //지금까지 하나의 블록을 선택한 경우
                 else
                 {
+
+                    _firstBlock = hit.transform.gameObject;
+                    FindLocationInLinkedList();
                     pressedBlock = true;
-                    firstBlock = hit.transform.gameObject;
 
                 }
 
@@ -129,6 +121,38 @@ public class MyPlayerController : MonoBehaviour
 
         }
     }
+
+    //선택한 블록이 게임 내에서 n행 n열에 있는지를 탐색한다.
+    void FindLocationInLinkedList()
+    {
+        //첫 번째 블록
+        if (!pressedBlock)
+        {
+            _firstBlockInfo = _firstBlock.GetComponent<BlockInfo>();
+
+            for (int i = 0; i < blocks.colCnt; ++i)
+            {
+                if (blocks.cols[_firstBlockInfo._ColPos][i] == _firstBlock)
+                {
+                    _firstBlockInfo._RowPos = i;
+                }
+            }
+        }
+        //두 번째 블록
+        else
+        {
+            _secondBlockInfo = _secondBlock.GetComponent<BlockInfo>();
+
+            for (int i = 0; i < blocks.colCnt; ++i)
+            {
+                if (blocks.cols[_secondBlockInfo._ColPos][i] == _secondBlock)
+                {
+                    _secondBlockInfo._RowPos = i;
+                }
+            }
+        }
+    }
+
     //Ray 발사 함수
     RaycastHit2D ShootRay(Vector2 touchPos)
     {
@@ -140,37 +164,41 @@ public class MyPlayerController : MonoBehaviour
         return hit;
     }
 
-
-    //선택된 과일 두개의 거리가 교환 가능한 거리인지 판단하고 매칭 로직 시작
-
+    //두 블록이 교환 가능한지 확인하고, 가능하다면 교환 실시
     void ClickBlockTwice(RaycastHit2D hit)
     {
-        //거리 및 서로의 대각선 위치 판단
-
-        Debug.Log(Vector2.Distance(firstBlock.transform.localPosition, hit.transform.localPosition));
-
-        if ((Vector2.Distance(firstBlock.transform.localPosition, hit.transform.localPosition) < MaxDistance))
+        //두 블록의 행이 같을 때
+        if (_firstBlockInfo._RowPos == _secondBlockInfo._RowPos)
         {
-            Debug.Log("과일 두개 클릭한 상태");
-
-
-
-            secondFruit = hit.transform.gameObject;
-
-            firstObjectName = firstBlock.name;
-            secondObjectName = secondFruit.name;
-
-            //블록 로직 수행
-            blocks.ListExchangeByPlayer(firstObjectName, secondObjectName);
-
-
+            if (_firstBlockInfo._ColPos - 1 == _secondBlockInfo._ColPos || _firstBlockInfo._ColPos + 1 == _secondBlockInfo._ColPos)
+            {
+                Debug.Log("블록 교환 수행");
+                blocks._playerTurn = true;
+                blocks.BlockExchangeByPlayer(_firstBlockInfo,_secondBlockInfo);
+            }
 
         }
-        
+        //두 블록의 열이 같을 때
+        else if (_firstBlockInfo._ColPos == _secondBlockInfo._ColPos)
+        {
+            if (_secondBlockInfo._RowPos == _firstBlockInfo._RowPos - 1 || _secondBlockInfo._RowPos == _firstBlockInfo._RowPos + 1)
+            {
+                Debug.Log("블록 교환 수행");
+                blocks._playerTurn = true;
+                blocks.BlockExchangeByPlayer(_firstBlockInfo, _secondBlockInfo);
+
+
+            }
+        }
+
 
         pressedBlock = false;
+
     }
 }
+
+
+
    
 
 

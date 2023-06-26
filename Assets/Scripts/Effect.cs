@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 /*
- ���� ȿ���� �����ϴ� ��ũ��Ʈ (��� ������, ����̵�, ���� �Ҹ�)
+게임 내 이펙트 관리 스크립트
 
   */
 public class Effect : MonoBehaviour
