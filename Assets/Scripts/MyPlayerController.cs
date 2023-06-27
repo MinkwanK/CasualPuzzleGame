@@ -37,7 +37,7 @@ public class MyPlayerController : MonoBehaviour
     void getFruiteInput()
     {
 
-      //GetMouseInput();
+     // GetMouseInput();
        GetMobileInput();
 
     }
@@ -167,6 +167,8 @@ public class MyPlayerController : MonoBehaviour
     //두 블록이 교환 가능한지 확인하고, 가능하다면 교환 실시
     void ClickBlockTwice(RaycastHit2D hit)
     {
+        Debug.Log("FirstBlock: " + _firstBlock.name + "  SecondBlock : " + _secondBlock.name);
+        Debug.Log("firstBlock Row " + _firstBlockInfo._RowPos + "secondblock Row " + _secondBlockInfo._RowPos);
         //두 블록의 행이 같을 때
         if (_firstBlockInfo._RowPos == _secondBlockInfo._RowPos)
         {
@@ -175,6 +177,13 @@ public class MyPlayerController : MonoBehaviour
                 Debug.Log("블록 교환 수행");
                 blocks._playerTurn = true;
                 blocks.BlockExchangeByPlayer(_firstBlockInfo,_secondBlockInfo);
+            }
+            else
+            {
+                _firstBlock = null;
+                _secondBlock = null;
+                _firstBlockInfo = null;
+                _secondBlockInfo = null;
             }
 
         }
@@ -189,6 +198,20 @@ public class MyPlayerController : MonoBehaviour
 
 
             }
+            else
+            {
+                _firstBlock = null;
+                _secondBlock = null;
+                _firstBlockInfo = null;
+                _secondBlockInfo = null;
+            }
+        }
+        else
+        {
+            _firstBlock = null;
+            _secondBlock = null;
+            _firstBlockInfo = null;
+            _secondBlockInfo = null;
         }
 
 

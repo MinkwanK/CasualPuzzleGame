@@ -83,8 +83,8 @@ public class Enemy : MonoBehaviour
 
             if (enemyStatus.hp <= 0)
             {
-                gamemanager.SetMonserHP(enemyStatus.hp.ToString());
                 enemyStatus.hp = 0;
+                gamemanager.SetMonserHP(enemyStatus.hp.ToString());
                 gamemanager.UpdateEnemyHealthBar(enemyStatus.hp);
                 gamemanager.ShowResultPanel();
                 this.GetComponent<SpriteRenderer>().sprite = dieSprite;

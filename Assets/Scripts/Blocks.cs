@@ -124,28 +124,31 @@ public class Blocks : MonoBehaviour
     {
         if (_canTouch || _goBack)
         {
-            _canTouch = false;
+            if (firstBlockInfo != null && secondBlockInfo != null)
+            {
+                _canTouch = false;
 
-            //전역 변수에 값 갱신
-            _firstPos = firstBlockInfo.gameObject.transform.position;
-            _secondPos = secondBlockInfo.gameObject.transform.position;
+                //전역 변수에 값 갱신
+                _firstPos = firstBlockInfo.gameObject.transform.position;
+                _secondPos = secondBlockInfo.gameObject.transform.position;
 
-            _firstBlock = firstBlockInfo.gameObject;
-            _secondBlock = secondBlockInfo.gameObject;
+                _firstBlock = firstBlockInfo.gameObject;
+                _secondBlock = secondBlockInfo.gameObject;
 
-            _firstBlockInfo = firstBlockInfo;
-            _secondBlockInfo = secondBlockInfo;
+                _firstBlockInfo = firstBlockInfo;
+                _secondBlockInfo = secondBlockInfo;
 
-            //블록 열 리스트간의 데이터 교환
-            GameObject temp = cols[firstBlockInfo._ColPos][firstBlockInfo._RowPos];
-            cols[firstBlockInfo._ColPos][firstBlockInfo._RowPos] = cols[secondBlockInfo._ColPos][secondBlockInfo._RowPos];
-            cols[secondBlockInfo._ColPos][secondBlockInfo._RowPos] = temp;
+                //블록 열 리스트간의 데이터 교환
+                GameObject temp = cols[firstBlockInfo._ColPos][firstBlockInfo._RowPos];
+                cols[firstBlockInfo._ColPos][firstBlockInfo._RowPos] = cols[secondBlockInfo._ColPos][secondBlockInfo._RowPos];
+                cols[secondBlockInfo._ColPos][secondBlockInfo._RowPos] = temp;
 
-            int tempPos = firstBlockInfo._ColPos;
-            firstBlockInfo._ColPos = secondBlockInfo._ColPos;
-            secondBlockInfo._ColPos = tempPos;
+                int tempPos = firstBlockInfo._ColPos;
+                firstBlockInfo._ColPos = secondBlockInfo._ColPos;
+                secondBlockInfo._ColPos = tempPos;
 
-            MoveBlockSetting();
+                MoveBlockSetting();
+            }
         }
        
     }
@@ -201,7 +204,7 @@ public class Blocks : MonoBehaviour
             if (_playerTurn && !_goBack)
             {
                 _canTouch = false;
-                MatchLogic();
+                _canMatch = true;
             }
             else if(_playerTurn && _goBack)
             {
@@ -242,7 +245,7 @@ public class Blocks : MonoBehaviour
                 if(colTag == cols[i][j].tag)
                 {    
                     ++colMatchedCount;
-                    destroyTempDic_Col.Add(cols[i][j].name, cols[i][j]);
+                    destroyTempDic_Col.TryAdd(cols[i][j].name, cols[i][j]);
 
                     if (colMatchedCount >= 3 && j == colCnt-1)
                     {
@@ -262,7 +265,7 @@ public class Blocks : MonoBehaviour
                     }
 
                     colMatchedCount = 1;
-                    destroyTempDic_Col.Add(cols[i][j].name, cols[i][j]);
+                    destroyTempDic_Col.TryAdd(cols[i][j].name, cols[i][j]);
                 }
 
                 //행 매칭
@@ -270,7 +273,7 @@ public class Blocks : MonoBehaviour
                 if(cols[j][i].tag == rowTag)
                 {
                     ++rowMatchedCount;
-                    destroyTempDic_Row.Add(cols[j][i].name, cols[j][i]);
+                    destroyTempDic_Row.TryAdd(cols[j][i].name, cols[j][i]);
 
                     if (rowMatchedCount >= 3 && j == colCnt - 1)
                     {
@@ -290,7 +293,7 @@ public class Blocks : MonoBehaviour
                     }
 
                     rowMatchedCount = 1;
-                    destroyTempDic_Row.Add(cols[j][i].name, cols[j][i]);
+                    destroyTempDic_Row.TryAdd(cols[j][i].name, cols[j][i]);
                 }
             }
         }
@@ -308,7 +311,7 @@ public class Blocks : MonoBehaviour
         
         foreach (var item in destroyTempDic)
         {
-            destroyDic.Add(item.Key, item.Value);
+            destroyDic.TryAdd(item.Key, item.Value);
         }
         
 
@@ -397,18 +400,20 @@ public class Blocks : MonoBehaviour
             {
                 for (int j = 0; j < generateNum; j++)
                 {
-                    StartCoroutine(InstantiateBlocks(i, j, generateNum));
-                    yield return new WaitForSeconds(0.1f);
+                    StartCoroutine(InstantiateBlocks(i, generateNum));
+                    yield return new WaitForSeconds(0.25f);
                 }
             }
         }
         //블록 스폰이 다 끝난 뒤에 매칭 시작
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
         _canMatch = true;
+
+        PrintCols();
     }
 
     //RandomValue에 따라 블록 생성
-    IEnumerator InstantiateBlocks(int i, int j, int generateNum)
+    IEnumerator InstantiateBlocks(int i, int generateNum)
     {
         int minValue = 0;
         int maxValue = 4;
